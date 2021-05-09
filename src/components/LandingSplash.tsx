@@ -7,16 +7,14 @@ import { scroller } from 'react-scroll';
 
 const scrollOptions = {duration: 500, delay: 100, smooth: true }
 
-const LandingSplashContainer = styled.div`
-  background: linear-gradient(to right, #00d2ff, #3a7bd5);
+const SplashContainer = styled.div`
+  background: linear-gradient(to left, #F72585, #7209B7);
   height: 100vh;
   width: 100vw;
 `
 
-const LandingSplashInfoContainer = styled.div`
-  position: absolute;
-  top: 30vh;
-  left: 350px;
+const SplashInfoContainer = styled.div`
+    margin-left: 100px;
 `
 
 const TitleFont = styled.span`
@@ -24,7 +22,7 @@ const TitleFont = styled.span`
 
   font-size: 75px;
   font-weight: 900;
-  color: #EFF8E2;
+  color: #F4F7F5;
 `
 const IconContainer = styled.div`
   margin-top: 10px;
@@ -51,19 +49,29 @@ const CompassDown = styled(BsChevronCompactDown)`
     }
 `
 
+const SplashContentContainer = styled.div`
+    position: absolute;
+    top: 30vh;
+    left: 300px;
+    display: flex;
+    align-items: center;
+`
+
 export default function LandingSplash() {
   return (
-    <LandingSplashContainer>
-      <LandingSplashInfoContainer>
-        <TitleFont>Hello, I'm Andrew!</TitleFont>
-        <IconContainer>
-          <ContactIcon url="https://www.linkedin.com/in/andrewydai/" />
-          <ContactIcon url="https://github.com/andrewydai" />
-          <ContactIcon url="mailto:dai.an@northeastern.edu" network="email"/>
-        </IconContainer>
-      </LandingSplashInfoContainer>
+    <SplashContainer>
+      <SplashContentContainer>
       <Portrait />
+        <SplashInfoContainer>
+            <TitleFont>Hello, I'm Andrew!</TitleFont>
+            <IconContainer>
+            <ContactIcon url="https://www.linkedin.com/in/andrewydai/" />
+            <ContactIcon url="https://github.com/andrewydai" />
+            <ContactIcon url="mailto:dai.an@northeastern.edu" network="email"/>
+            </IconContainer>
+        </SplashInfoContainer>
+      </SplashContentContainer>
       <CompassDown onClick={() => scroller.scrollTo('landingExperiences', scrollOptions)}/>
-    </LandingSplashContainer>
+    </SplashContainer>
   );
 }
