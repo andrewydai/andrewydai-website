@@ -21,7 +21,7 @@ const NavButton = styled(Link)`
     font-family: 'Lato', sans-serif;
     color: #EFF8E2;
     font-size: 25px;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 20px 5px 20px;
     border-radius: 5px;
     text-decoration: none;
     &:hover {
@@ -30,7 +30,7 @@ const NavButton = styled(Link)`
 `
 
 const HighlightedNavButton = styled(NavButton)`
-    background: #231F20;
+    background: #040A25;
 `
 type NavObject = { label: string, path: string }
 const NavigationOptions: NavObject[] = 

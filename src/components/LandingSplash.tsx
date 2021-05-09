@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Resume from '../downloads/resume.pdf';
+import { ImProfile } from "react-icons/im";
 import Portrait from './Portrait';
 import { SocialIcon } from 'react-social-icons';
 import { BsChevronCompactDown } from "react-icons/bs";
@@ -28,7 +30,7 @@ const IconContainer = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
-  width: 30%;
+  width: 40%;
 `
 
 const ContactIcon = styled(SocialIcon)`
@@ -38,15 +40,23 @@ const ContactIcon = styled(SocialIcon)`
 
 const CompassDown = styled(BsChevronCompactDown)`
     position: absolute;
+    color: #F4F7F5;
     bottom: 0px;
     width: 100%;
     display: flex;
     justify-content: center;
-    opacity: 50%;
+    opacity: 75%;
     height: 70px;
     &:hover {
         cursor: pointer;
     }
+`
+
+const ResumeIcon = styled(ImProfile)`
+    color: white;
+    padding-top: 5px;
+    width: 40px;
+    height: 40px;
 `
 
 const SplashContentContainer = styled.div`
@@ -65,9 +75,12 @@ export default function LandingSplash() {
         <SplashInfoContainer>
             <TitleFont>Hello, I'm Andrew!</TitleFont>
             <IconContainer>
-            <ContactIcon url="https://www.linkedin.com/in/andrewydai/" />
-            <ContactIcon url="https://github.com/andrewydai" />
-            <ContactIcon url="mailto:dai.an@northeastern.edu" network="email"/>
+                <ContactIcon url="https://www.linkedin.com/in/andrewydai/" />
+                <ContactIcon url="https://github.com/andrewydai" />
+                <ContactIcon url="mailto:dai.an@northeastern.edu" network="email"/>
+                <a href={Resume}  target="_blank">
+                    <ResumeIcon />
+                </a>
             </IconContainer>
         </SplashInfoContainer>
       </SplashContentContainer>
