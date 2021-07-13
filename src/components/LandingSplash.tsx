@@ -12,7 +12,7 @@ const scrollOptions = {duration: 500, delay: 100, smooth: true }
 const SplashContainer = styled.div`
   background: linear-gradient(to left, #F72585, #7209B7);
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 `
 
 const SplashInfoContainer = styled.div`
