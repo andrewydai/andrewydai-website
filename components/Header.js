@@ -1,56 +1,62 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 import { PRIMARY_TEXT_COLOR, PRIMARY_TEXT_COLOR_HOVER } from '../constants/colors';
+import LinkText from './LinkText';
 
 const HeaderContainer = styled.div`
-  padding: 20px 100px 20px 100px;
+  position: absolute;
+  width: 100vw;
+  padding-top: 20px;
+  padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
+  z-index: 1;
 `;
 
 const HeaderText = styled.div`
-  cursor: pointer;
-  color: ${PRIMARY_TEXT_COLOR};
-  overflow: hidden;
-  background: linear-gradient(
-    to right,
-    ${PRIMARY_TEXT_COLOR_HOVER},
-    ${PRIMARY_TEXT_COLOR_HOVER} 50%,
-    ${PRIMARY_TEXT_COLOR} 50%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 100%;
-  background-position: 100%;
-  transition: background-position 275ms ease;
   font-size: 15px;
   font-family: 'poppins', sans-serif;
   font-weight: 700;
-  &:hover {
-    background-position: 0 100%;
-  }
+`;
+
+const RightHeaderGroup = styled.div`
+  margin-left: 100px;
 `;
 
 const LeftHeaderGroup = styled.div`
+  margin-right: 100px;
   width: 30%;
   display: flex;
   justify-content: space-between;
 `;
 
+const rightRoutes = [
+  { route: '/experiences', text: 'EXPERIENCES' },
+  { route: '/projects', text: 'PROJECTS' },
+  { route: '/about', text: 'ABOUT' },
+  { route: '/contact', text: 'CONTACT' },
+];
+
 export default function Header() {
   return (
     <HeaderContainer>
-      <Link href="/">
-        <HeaderText>ANDREW DAI</HeaderText>
-      </Link>
+      <RightHeaderGroup>
+        <LinkText href="/" primaryColor={PRIMARY_TEXT_COLOR} hoverColor={PRIMARY_TEXT_COLOR_HOVER}>
+          <HeaderText>ANDREW DAI</HeaderText>
+        </LinkText>
+      </RightHeaderGroup>
       <LeftHeaderGroup>
-        <Link href="/experiences">
-          <HeaderText>EXPERIENCES</HeaderText>
-        </Link>
-        <HeaderText>PROJECTS</HeaderText>
-        <HeaderText>ABOUT</HeaderText>
-        <HeaderText>CONTACT</HeaderText>
+        {rightRoutes.map((route) => {
+          return (
+            <LinkText
+              href={route.route}
+              key={route.route}
+              primaryColor={PRIMARY_TEXT_COLOR}
+              hoverColor={PRIMARY_TEXT_COLOR_HOVER}
+            >
+              <HeaderText>{route.text}</HeaderText>
+            </LinkText>
+          );
+        })}
       </LeftHeaderGroup>
     </HeaderContainer>
   );

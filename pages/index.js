@@ -2,8 +2,11 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Helmet } from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { PRIMARY_BACKGROUND, PRIMARY_TEXT_COLOR } from '../constants/colors';
+import LinkText from '../components/LinkText';
+import { PRIMARY_BACKGROUND, PRIMARY_TEXT_COLOR, PRIMARY_TEXT_COLOR_HOVER } from '../constants/colors';
+import splash from '../constants/splash.json';
 import photo from '../public/photo.png';
+import Slide from '../components/Slide';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -13,12 +16,42 @@ const GlobalStyle = createGlobalStyle`
 
 const PageContainer = styled.div`
   background-color: ${PRIMARY_BACKGROUND};
+  color: ${PRIMARY_TEXT_COLOR};
+  font-family: 'poppins', sans-serif;
+  scroll-snap-type: y mandatory;
+  max-height: 100vh;
+  overflow-y: scroll;
 `;
 
-const WindowContainer = styled.div`
-position: relative
+const SplashContainer = styled.div`
+  position: relative;
   width: 100vw;
   height: 100vh;
+`;
+
+const SecondSplashContainer = styled.div`
+  padding: 50px 200px 50px 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const SecondSplashParagraphContainer = styled.div`
+  width: 60%;
+  line-height: 30px;
+`;
+
+const SecondSplashParagraphText = styled.div`
+  padding-top: 10px;
+`;
+
+const SecondSplashLinkContainer = styled.div`
+  width: 60%;
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-between;
+  font-size: 20px;
+  text-decoration: underline;
 `;
 
 const TitleText = styled.div`
@@ -27,11 +60,11 @@ const TitleText = styled.div`
   bottom: 300px;
   left: 100px;
   font-size: 70px;
+  font-weight: 700;
   font-family: 'poppins', sans-serif;
 `;
 
-const WorkExperienceText = styled.span`
-  text-decoration: underline;
+const ScrollText = styled.span`
   margin-top: 10px;
   margin-right: 20px;
   justify-content: space-between;
@@ -51,23 +84,46 @@ export default function Home() {
     <>
       <GlobalStyle />
       <Helmet>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Poppins:wght@500&display=swap"
+          rel="stylesheet"
+        />
       </Helmet>
       <PageContainer>
-        <WindowContainer>
-          <Header />
-          <TitleText>
-            Hi! I'm Andrew Dai,
-            <br /> a software engineer.
-            <div>
-              <WorkExperienceText>View my work experience</WorkExperienceText>
-              <WorkExperienceText>Learn about me</WorkExperienceText>
-            </div>
-          </TitleText>
-          <Photo src={photo.src} alt="photo" />
-        </WindowContainer>
-        <WindowContainer></WindowContainer>
-        <Footer />
+        <Slide>
+          <SplashContainer>
+            <Header />
+            <TitleText>
+              Hi! I'm Andrew Dai,
+              <div>a software engineer.</div>
+              <div>
+                <ScrollText>Scroll to learn more</ScrollText>
+              </div>
+            </TitleText>
+            <Photo src={photo.src} alt="photo" />
+          </SplashContainer>
+        </Slide>
+        <Slide>
+          <SecondSplashContainer name="secondSplash">
+            <SecondSplashParagraphContainer>
+              <SecondSplashParagraphText>{splash.introText1}</SecondSplashParagraphText>
+              <SecondSplashParagraphText>{splash.introText2}</SecondSplashParagraphText>
+              <SecondSplashParagraphText>{splash.introText3}</SecondSplashParagraphText>
+            </SecondSplashParagraphContainer>
+            <SecondSplashLinkContainer>
+              <LinkText href="/experiences" primaryColor={PRIMARY_TEXT_COLOR} hoverColor={PRIMARY_TEXT_COLOR_HOVER}>
+                <div>View my work experiences</div>
+              </LinkText>
+              <LinkText href="/projects" primaryColor={PRIMARY_TEXT_COLOR} hoverColor={PRIMARY_TEXT_COLOR_HOVER}>
+                <div>See my projects</div>
+              </LinkText>
+              <LinkText href="/about" primaryColor={PRIMARY_TEXT_COLOR} hoverColor={PRIMARY_TEXT_COLOR_HOVER}>
+                <div>Learn about me</div>
+              </LinkText>
+            </SecondSplashLinkContainer>
+          </SecondSplashContainer>
+        </Slide>
+        <Footer name="footer" />
       </PageContainer>
     </>
   );

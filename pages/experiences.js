@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import ExperienceSlide from '../components/ExperienceSlide';
 import { PRIMARY_BACKGROUND, PRIMARY_TEXT_COLOR } from '../constants/colors';
 import experiences from '../constants/experiences.json';
+import Footer from '../components/Footer';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -68,6 +69,7 @@ export default function Experiences() {
         {Object.values(experiences).map((experience) => (
           <ExperienceSlide experience={experience} />
         ))}
+        <Footer name="footer" />
       </FullPageContainer>
     </>
   );
