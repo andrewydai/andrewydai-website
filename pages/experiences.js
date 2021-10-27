@@ -62,12 +62,12 @@ export default function Experiences() {
           <TitleText>
             EXPERIENCES
             <FrontSubtitle>
-              I've had the priveledge to contribute at some pretty cool places. Read more about them below!
+              I&apos;ve had the priveledge to contribute at some pretty cool places. Read more about them below!
             </FrontSubtitle>
           </TitleText>
         </WindowContainer>
         {Object.values(experiences).map((experience) => (
-          <ExperienceSlide experience={experience} />
+          <ExperienceSlide key={experience.title} experience={experience} />
         ))}
         <Footer name="footer" />
       </FullPageContainer>

@@ -94,7 +94,7 @@ export default function Home() {
           <SplashContainer>
             <Header />
             <TitleText>
-              Hi! I'm Andrew Dai,
+              Hi! I&apos;m Andrew Dai,
               <div>a software engineer.</div>
               <div>
                 <ScrollText>Scroll to learn more</ScrollText>
