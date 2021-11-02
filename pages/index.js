@@ -21,6 +21,7 @@ const PageContainer = styled.div`
   scroll-snap-type: y mandatory;
   max-height: 100vh;
   overflow-y: scroll;
+  max-width: 100%;
 `;
 
 const SplashContainer = styled.div`

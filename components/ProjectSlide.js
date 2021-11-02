@@ -12,7 +12,7 @@ const WindowContainer = styled.div`
   font-family: 'poppins', sans-serif;
 `;
 
-const ExperienceTitle = styled.div`
+const ProjectTitle = styled.div`
   position: absolute;
   height: 100vh;
   left: 100px;
@@ -23,11 +23,11 @@ const ExperienceTitle = styled.div`
   font-weight: 700;
 `;
 
-const ExperienceRole = styled.div`
+const ProjectRole = styled.div`
   font-size: 20px;
 `;
 
-const ExperienceDescription = styled.div`
+const ProjectDescription = styled.div`
   position: absolute;
   font-weight: 500;
   font-size: 20px;
@@ -40,44 +40,44 @@ const ExperienceDescription = styled.div`
   flex-direction: column;
 `;
 
-const ExperienceTime = styled.div`
+const ProjectTime = styled.div`
   font-style: italic;
   font-size: 15px;
 `;
 
-const ExperienceLinks = styled.div`
+const ProjectLinks = styled.div`
   display: flex;
 `;
 
-const ExperienceLink = styled.div`
+const ProjectLink = styled.div`
   color: ${PRIMARY_TEXT_COLOR};
   text-decoration: underline;
   font-style: italic;
   margin: 10px 20px 0px 0px;
 `;
 
-export default function ExperienceSlide({ experience }) {
-  const { title, role, time, description, links } = experience;
+export default function ProjectSlide({ project }) {
+  const { title, role, time, description, links } = project;
   return (
     <Slide>
       <WindowContainer>
-        <ExperienceTitle>
+        <ProjectTitle>
           {title}
-          <ExperienceRole>
+          <ProjectRole>
             {role}
-            <ExperienceTime>{time}</ExperienceTime>
-          </ExperienceRole>
-        </ExperienceTitle>
-        <ExperienceDescription>
+            <ProjectTime>{time}</ProjectTime>
+          </ProjectRole>
+        </ProjectTitle>
+        <ProjectDescription>
           {description}
-          <ExperienceLinks>
+          <ProjectLinks>
             {links.map((link) => (
               <a href={link.linkUrl} target="_blank" rel="noopener noreferrer">
-                <ExperienceLink key={link.linkTitle}>{link.linkTitle}</ExperienceLink>
+                <ProjectLink key={link.linkTitle}>{link.linkTitle}</ProjectLink>
               </a>
             ))}
-          </ExperienceLinks>
-        </ExperienceDescription>
+          </ProjectLinks>
+        </ProjectDescription>
       </WindowContainer>
     </Slide>
   );

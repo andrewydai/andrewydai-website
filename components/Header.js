@@ -3,6 +3,7 @@ import { PRIMARY_TEXT_COLOR, PRIMARY_TEXT_COLOR_HOVER } from '../constants/color
 import LinkText from './LinkText';
 
 const HeaderContainer = styled.div`
+  max-width: 100%;
   position: absolute;
   width: 100vw;
   padding-top: 20px;

@@ -1,44 +1,26 @@
 {
     "appfolio": {
-        "title": "AppFolio",
-        "role": "Software Engineer Co-op",
+        "title": "Personal Website",
         "time": "January 2021 - July 2021",
         "links": [{ "linkTitle": "appfolio.com", "linkUrl": "https://www.appfolio.com/"}],
         "description": "At AppFolio, I had the chance to work with their APM Plus Smart Maintenance teams. Our goal was to make a better maintenance platform for users and property managers. Some features I worked on were allowing maintenance dispatchers to dispatch robocalls for maintenance teams, writing a GraphQL server to help property managers view messaging on maintenance issues, converting a whole project to TypeScript, and more!"
     },
     "poweradvocate": {
-        "title": "PowerAdvocate",
-        "role": "Software Engineer Co-op",
+        "title": "Ping Pong Board",
         "time": "January 2020 - July 2020",
         "links": [{ "linkTitle": "poweradvocate.com", "linkUrl": "https://w3.poweradvocate.com/"}],
         "description": "PowerAdvocate was where I first wrote code in industry and learned the process of working in a professional software environment. I got the chance to work on some cool features. For example, I workede on writing a search platform for clients to more easily find the right supplier for their supply chain. I also designed and built an internal data pipeline for many of our services to use. PowerAdvocate always pushed their employees to do what they loved too, and part of that for me was leading and creating the onboarding for the next wave of co-ops."
     },
     "khouryCollege": {
-        "title": "Khoury College",
-        "role": "Research Assistant",
+        "title": "Adventure Bot",
         "time": "January 2019 - July 2019",
         "links": [{ "linkTitle": "CUBA", "linkUrl": "https://arxiv.org/pdf/1804.04766.pdf"}],
         "description": "My freshman year, I got an amazing opportunity to work with one my professor's, Dr. Thomas Wahl, on their research project. The research was program analysis, and our focus was on building a tool to explore all of a program's states when given some constraints. Peizun Liu, the PhD student, had already built a context-switch bounded tool; I worked on a stack-depth bound. After building the tool, we ran through many tests to determine the pros and cons of the differrent solutions"
     },
     "sandbox": {
-        "title": "Sandbox",
-        "role": "Software Engineer",
+        "title": "Kirby Bullet Hell",
         "time": "January 2021 - Present",
         "links": [{ "linkTitle": "sandboxnu.com", "linkUrl": "https://www.sandboxnu.com/"}, { "linkTitle": "searchneu.com", "linkUrl": "https://searchneu.com/NEU"}, { "linkTitle": "github", "linkUrl": "https://github.com/sandboxnu"}],
         "description": "I've been working as a developer for Sandbox's SearchNEU team since January of 2021. Sandbox is a student led software consultancy, and SearchNEU is a community project dedicated to helping students search and learn about classes more easily. Some features I've worked on are Class Pages, which help show detailed informatin on classes, our switch to using GraphQL for our backend API, improving our Elasticsearch querying, and much more. My time here has been awesome so far, and I'm glad to be able to write code that gives back to my community."
-    },
-    "peaceThroughPlay": {
-        "title": "Peace Through Play",
-        "role": "School Coordinator and Website Team Lead",
-        "time": "September 2018 - April 2021",
-        "links": [{ "linkTitle": "peacethroughplay.org", "linkUrl": "http://peacethroughplay.org/"}, { "linkTitle": "gitlab", "linkUrl": "https://gitlab.com/andrewydai/peace-through-play-front-end"}],
-        "description": "Peace Through Play is a community service organization that dedicates themselves to improving the social emotional learning of young children throughout Boston Public schools. Through Peace Through Play, I've been able to volunteer at these schools, first as a general volunteeer, and later as a school coordinator. Later, I led a team of developers working to transform their static Wordpress website into a more powerful React site with extra functionality. Leading that initial effort gave me a lot of experience in teaching and leading a team of developers rather than just developing."
-    },
-    "firstbyte": {
-        "title": "FirstByte",
-        "role": "Curriculum Team Lead",
-        "time": "January 2019 - Present",
-        "links": [{ "linkTitle": "teachfirstbyte.org", "linkUrl": "https://teachfirstbyte.org/"}],
-        "description": "FirstByte is another community service organization that I volunteer for. FirstByte is a club dedicated to increasing diversity in STEM by increasing STEM education access for young kids. At FirstByte, I lead the curriculum team, creating and maintaining new resources for our educators to use. My role also involves helping to educate our members and interested people in how our kits work, and working with other clubs to enrich our repository of resources"
     }
 }

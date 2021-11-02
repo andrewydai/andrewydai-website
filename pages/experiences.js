@@ -52,7 +52,7 @@ export default function Experiences() {
       <GlobalStyle />
       <Helmet>
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&family=Poppins:wght@700&family=Poppins:wght@500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&family=Poppins:wght@900&family=Poppins:wght@700&family=Poppins:wght@500&display=swap"
           rel="stylesheet"
         />
       </Helmet>
@@ -62,7 +62,7 @@ export default function Experiences() {
           <TitleText>
             EXPERIENCES
             <FrontSubtitle>
-              I&apos;ve had the priveledge to contribute at some pretty cool places. Read more about them below!
+              I&apos;ve had the priviledge to contribute at some pretty cool places. Read more about them below!
             </FrontSubtitle>
           </TitleText>
         </WindowContainer>
