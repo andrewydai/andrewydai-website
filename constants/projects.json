@@ -1,26 +1,26 @@
 {
-    "appfolio": {
+    "personalWebsite": {
         "title": "Personal Website",
-        "time": "January 2021 - July 2021",
-        "links": [{ "linkTitle": "appfolio.com", "linkUrl": "https://www.appfolio.com/"}],
-        "description": "At AppFolio, I had the chance to work with their APM Plus Smart Maintenance teams. Our goal was to make a better maintenance platform for users and property managers. Some features I worked on were allowing maintenance dispatchers to dispatch robocalls for maintenance teams, writing a GraphQL server to help property managers view messaging on maintenance issues, converting a whole project to TypeScript, and more!"
+        "time": "May 2021",
+        "links": [{ "linkTitle": "github", "linkUrl": "https://github.com/andrewydai/andrewydai-website"}],
+        "description": "This is my personal site! This site is personal project built in JavaScript and React. I used a Next.js framework and Netlify to deploy it. I built my personal website to showcase some of the work i've done and to help people learn a little more about me."
     },
-    "poweradvocate": {
+    "pingPongBoard": {
         "title": "Ping Pong Board",
-        "time": "January 2020 - July 2020",
-        "links": [{ "linkTitle": "poweradvocate.com", "linkUrl": "https://w3.poweradvocate.com/"}],
-        "description": "PowerAdvocate was where I first wrote code in industry and learned the process of working in a professional software environment. I got the chance to work on some cool features. For example, I workede on writing a search platform for clients to more easily find the right supplier for their supply chain. I also designed and built an internal data pipeline for many of our services to use. PowerAdvocate always pushed their employees to do what they loved too, and part of that for me was leading and creating the onboarding for the next wave of co-ops."
+        "time": "August 2021",
+        "links": [{ "linkTitle": "github", "linkUrl": "https://github.com/andrewydai/disknee-ping-pong"}, { "linkTitle": "herokuapp", "linkUrl": "http://disknee-ping-pong-leaderboard.herokuapp.com/"}],
+        "description": "This is a small webapp written in JavaScript and React and hosted on Heroku for my roommates and I. I created this app to help keep track of a ping pong ladder. Users can submit the results of matches, and ratings will update based on an ELO system. These changes are propagated to a dattabase, which for now is a spreadsheet interfaced with the sheet.best. API"
     },
-    "khouryCollege": {
+    "adventureBot": {
         "title": "Adventure Bot",
-        "time": "January 2019 - July 2019",
-        "links": [{ "linkTitle": "CUBA", "linkUrl": "https://arxiv.org/pdf/1804.04766.pdf"}],
-        "description": "My freshman year, I got an amazing opportunity to work with one my professor's, Dr. Thomas Wahl, on their research project. The research was program analysis, and our focus was on building a tool to explore all of a program's states when given some constraints. Peizun Liu, the PhD student, had already built a context-switch bounded tool; I worked on a stack-depth bound. After building the tool, we ran through many tests to determine the pros and cons of the differrent solutions"
+        "time": "January 2020",
+        "links": [],
+        "description": "Adventure bot is a small project that I started to try to explore simulating a DnD like experience with a discord bot. The project started as a class project in a Game Design course. After the course, I continued building parts of it. At its core, it is a Javascript Node.js server that uses the Discord API to run a bot. The bot is interacted with through channels and direct messages, and is meant to take over the role of being a Dungeon Master and setting up TTRPG sessions. The project provides a really interesting dive into how to tackle smarter generation of character and story."
     },
     "sandbox": {
         "title": "Kirby Bullet Hell",
-        "time": "January 2021 - Present",
-        "links": [{ "linkTitle": "sandboxnu.com", "linkUrl": "https://www.sandboxnu.com/"}, { "linkTitle": "searchneu.com", "linkUrl": "https://searchneu.com/NEU"}, { "linkTitle": "github", "linkUrl": "https://github.com/sandboxnu"}],
-        "description": "I've been working as a developer for Sandbox's SearchNEU team since January of 2021. Sandbox is a student led software consultancy, and SearchNEU is a community project dedicated to helping students search and learn about classes more easily. Some features I've worked on are Class Pages, which help show detailed informatin on classes, our switch to using GraphQL for our backend API, improving our Elasticsearch querying, and much more. My time here has been awesome so far, and I'm glad to be able to write code that gives back to my community."
+        "time": "October 2018",
+        "links": [],
+        "description": "Kirby Bullet hell is a project that my friends and I created at the 2018 Boston Hacks Hackathon. The project was coded in Racket Scheme, a functional language similar to Lisp. The project uses a Big-bang to create a simple game engine, with physics, projectile motion, and collision. We designed, plan, and developed the project over the course of the weekend. In the game, the player tries to capture points on the map while avoiding increasingly dense projectiles of different behaviors."
     }
 }
