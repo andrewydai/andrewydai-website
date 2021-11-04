@@ -72,7 +72,7 @@ export default function ProjectSlide({ project }) {
           {description}
           <ProjectLinks>
             {links.map((link) => (
-              <a href={link.linkUrl} target="_blank" rel="noopener noreferrer">
+              <a key={link.linkUrl} href={link.linkUrl} target="_blank" rel="noopener noreferrer">
                 <ProjectLink key={link.linkTitle}>{link.linkTitle}</ProjectLink>
               </a>
             ))}

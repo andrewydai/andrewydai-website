@@ -72,7 +72,7 @@ export default function ExperienceSlide({ experience }) {
           {description}
           <ExperienceLinks>
             {links.map((link) => (
-              <a href={link.linkUrl} target="_blank" rel="noopener noreferrer">
+              <a key={link.linkUrl} href={link.linkUrl} target="_blank" rel="noopener noreferrer">
                 <ExperienceLink key={link.linkTitle}>{link.linkTitle}</ExperienceLink>
               </a>
             ))}
