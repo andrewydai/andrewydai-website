@@ -44,7 +44,7 @@ const FrontSubtitle = styled.div`
 const WindowContainer = styled.div`
   position: relative;
   height: 100vh;
-  width: 100vw;
+  width: calc(100vw - (100vw - 100%));
   scroll-snap-align: start;
   color: ${PRIMARY_TEXT_COLOR};
   font-family: 'poppins', sans-serif;

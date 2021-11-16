@@ -26,7 +26,7 @@ const PageContainer = styled.div`
 
 const SplashContainer = styled.div`
   position: relative;
-  width: 100vw;
+  width: calc(100vw - (100vw - 100%));
   height: 100vh;
 `;
 
