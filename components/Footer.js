@@ -66,7 +66,7 @@ export default function Footer() {
           <a href="mailto:andreweyushengdai@gmail.com" target="_blank" rel="noopener noreferrer">
             <IconSizer icon={SiGmail} iconWidth={BIG_ICON_SIZE} iconHeight={BIG_ICON_SIZE} />
           </a>
-          <a href="http://linkedin.com/in/andrewydai" target="_blank" rel="noopener noreferrer">
+          <a href="resume.pdf" download>
             <IconSizer icon={AiFillFilePdf} iconWidth={BIG_ICON_SIZE} iconHeight={BIG_ICON_SIZE} />
           </a>
         </div>
