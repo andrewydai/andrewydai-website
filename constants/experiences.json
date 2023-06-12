@@ -1,4 +1,11 @@
 {
+    "pathai": {
+        "title": "PathAI",
+        "role": "Software Engineer 1",
+        "time": "September 2022 - June 2023",
+        "links": [{ "linkTitle": "pathai.com", "linkUrl": "https://www.pathai.com/"}],
+        "description": "At PathAI, I worked on the Clinical Trial Services team. I worked to create an effective platform for clinical trial managers and pathologists, leveraging our in house ML algorithms and slide viewing technology. Some highlights were adding a new system for document acceptance, adding features to the slide viewer and review workflow, designing a view-only user role for production operations!"
+    },
     "appfolio": {
         "title": "AppFolio",
         "role": "Software Engineer Co-op",

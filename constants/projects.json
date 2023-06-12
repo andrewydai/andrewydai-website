@@ -1,4 +1,10 @@
 {
+    "twistedTowers": {
+        "title": "Twisted Towers",
+        "time": "May 2023",
+        "links": [{ "linkTitle": "github", "linkUrl": "https://github.com/andrewydai/twisted-towers"}],
+        "description": "Twisted towers is a personal project and challenge for myself to replicate the game Tricky Towers, a popular tetris versus games. I've been working to re-implement in Unity 2D, and including writing the logic for game management, collisions and physics, block spawning and player input, and more!"
+    },
     "personalWebsite": {
         "title": "Personal Website",
         "time": "May 2021",
