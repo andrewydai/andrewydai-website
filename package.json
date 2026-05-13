@@ -1,29 +1,24 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
-  "private": true,
+  "name": "andrewydai-website",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@react-icons/all-files": "^4.1.0",
-    "next": "11.1.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-helmet": "^6.1.0",
-    "react-icons": "^4.3.1",
-    "react-scroll": "^1.8.4",
-    "styled-components": "^5.3.1"
-  },
-  "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
-    "file-loader": "^6.2.0"
-  },
-  "engines": {
-    "node": "16.18.1"
+    "@astrojs/react": "^5.0.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^6.3.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-is": "^19.2.6",
+    "styled-components": "^6.4.1"
   }
 }

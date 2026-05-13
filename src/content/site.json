@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "siteTitle": "Andrew Dai",
+    "description": "Personal site — work, projects, games, and hobbies."
+  },
+  "profile": {
+    "name": "Andrew Dai",
+    "shortBio": "I build software, play with side projects, and collect hobbies like postcards. This site is a loose scrapbook of all of that — meant for curious collaborators and future teammates."
+  },
+  "social": {
+    "github": "https://github.com/andrewydai",
+    "linkedin": "https://www.linkedin.com/in/andrewydai",
+    "resumeUrl": "/resume.pdf"
+  },
+  "landingCollage": [
+    {
+      "kind": "text",
+      "id": "intro",
+      "body": "Hi ✨ I'm Andrew — welcome to my corner of the internet: part portfolio, part diary, part organized chaos."
+    },
+    {
+      "kind": "photo",
+      "id": "photo-1",
+      "src": "/images/placeholder.svg",
+      "alt": "Stand-in portrait or scene",
+      "caption": "A stand-in frame — swap this path for a real photo in site assets."
+    },
+    {
+      "kind": "linkCard",
+      "id": "to-work",
+      "href": "/work",
+      "eyebrow": "Professional",
+      "title": "Work",
+      "text": "Roles, teams, and problems I've helped ship. The serious shelf of the scrapbook."
+    },
+    {
+      "kind": "photo",
+      "id": "photo-2",
+      "src": "/images/placeholder.svg",
+      "alt": "Workspace placeholder",
+      "caption": "Replace with a desk, whiteboard, or coffee shop shot."
+    },
+    {
+      "kind": "text",
+      "id": "mid",
+      "body": "I like interfaces that feel handwritten: generous whitespace, soft edges, and navigation that floats instead of shouts."
+    },
+    {
+      "kind": "linkCard",
+      "id": "to-projects",
+      "href": "/projects",
+      "eyebrow": "Building",
+      "title": "Projects",
+      "text": "Things I tinker on when an idea won't leave me alone — tools, experiments, demos."
+    },
+    {
+      "kind": "linkCard",
+      "id": "to-games",
+      "href": "/games",
+      "eyebrow": "Play",
+      "title": "Games",
+      "text": "Small games, jams, or playful prototypes — design through interaction."
+    },
+    {
+      "kind": "linkCard",
+      "id": "to-hobbies",
+      "href": "/hobbies",
+      "eyebrow": "Offline",
+      "title": "Hobbies",
+      "text": "The unindexed folder: film, music, hikes — whatever recharges the batteries."
+    },
+    {
+      "kind": "photo",
+      "id": "photo-3",
+      "src": "/images/placeholder.svg",
+      "alt": "Hobby placeholder",
+      "caption": "A visual breadcrumb toward the hobbies page."
+    }
+  ]
+}

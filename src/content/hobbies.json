@@ -1,0 +1,34 @@
+{
+  "title": "Hobbies",
+  "intro": "Looser than the other sections — small scraps, photos, and short notes.",
+  "items": [
+    {
+      "id": "hobby-film",
+      "blurb": "Weekend rewatches of quiet sci-fi. Currently taking notes on sound design.",
+      "image": { "src": "/images/placeholder.svg", "alt": "Film still placeholder" },
+      "rotation": -2,
+      "span": "medium"
+    },
+    {
+      "id": "hobby-hike",
+      "blurb": "Local trails when the weather cooperates — nothing heroic, just mileage and trees.",
+      "image": { "src": "/images/placeholder.svg", "alt": "Trail photo placeholder" },
+      "rotation": 1.5,
+      "span": "narrow"
+    },
+    {
+      "id": "hobby-music",
+      "blurb": "Playlists for deep work vs. cooking — the kitchen gets the upbeat stuff.",
+      "image": { "src": "/images/placeholder.svg", "alt": "Vinyl or speakers placeholder" },
+      "rotation": 0.8,
+      "span": "wide"
+    },
+    {
+      "id": "hobby-reading",
+      "blurb": "Essays on infrastructure and craft; fiction when my brain needs a reset.",
+      "image": { "src": "/images/placeholder.svg", "alt": "Book stack placeholder" },
+      "rotation": -1.2,
+      "span": "medium"
+    }
+  ]
+}

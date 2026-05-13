@@ -1,0 +1,99 @@
+---
+import type { HobbyItem } from '../types/content';
+
+interface Props {
+	items: HobbyItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="hobby-collage">
+	{
+		items.map((item) => {
+			const rot = item.rotation ?? 0;
+			const span = item.span ?? 'medium';
+			return (
+				<figure class:list={['hobby-scrap', `hobby-scrap--${span}`]} style={`--rot:${rot}deg`}>
+					<div class="hobby-frame">
+						<img src={item.image.src} alt={item.image.alt} loading="lazy" width="800" height="600" />
+					</div>
+					<figcaption>{item.blurb}</figcaption>
+				</figure>
+			);
+		})
+	}
+</div>
+
+<style>
+	.hobby-collage {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: 1.25rem;
+		align-items: start;
+	}
+
+	.hobby-scrap {
+		margin: 0;
+		grid-column: span 12;
+		transform: rotate(var(--rot, 0deg));
+		transition:
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.hobby-scrap:hover {
+		transform: rotate(var(--rot, 0deg)) translateY(-3px);
+	}
+
+	@media (min-width: 640px) {
+		.hobby-scrap--narrow {
+			grid-column: span 5;
+		}
+
+		.hobby-scrap--medium {
+			grid-column: span 7;
+		}
+
+		.hobby-scrap--wide {
+			grid-column: span 12;
+		}
+	}
+
+	@media (min-width: 960px) {
+		.hobby-scrap--narrow {
+			grid-column: span 4;
+		}
+
+		.hobby-scrap--medium {
+			grid-column: span 5;
+		}
+
+		.hobby-scrap--wide {
+			grid-column: span 8;
+		}
+	}
+
+	.hobby-frame {
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		border: 1px solid rgba(28, 27, 25, 0.08);
+		box-shadow: var(--shadow);
+		background: rgba(255, 253, 248, 0.9);
+	}
+
+	.hobby-frame img {
+		width: 100%;
+		aspect-ratio: 5 / 4;
+		object-fit: cover;
+	}
+
+	.hobby-scrap figcaption {
+		margin-top: 0.6rem;
+		font-family: var(--font-serif);
+		font-size: 1.02rem;
+		color: var(--ink-muted);
+		max-width: 36ch;
+		line-height: 1.45;
+	}
+</style>

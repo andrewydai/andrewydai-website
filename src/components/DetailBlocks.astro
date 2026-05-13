@@ -1,0 +1,87 @@
+---
+import type { DetailBlock } from '../types/content';
+
+interface Props {
+	blocks: DetailBlock[];
+}
+
+const { blocks } = Astro.props;
+---
+
+<div class="detail-blocks">
+	{
+		blocks.map((block) => {
+			if (block.type === 'paragraph') {
+				return <p class="detail-p">{block.text}</p>;
+			}
+			if (block.type === 'image') {
+				return (
+					<figure class="detail-fig">
+						<img src={block.src} alt={block.alt} loading="lazy" width="1200" height="800" />
+						{block.caption ? <figcaption>{block.caption}</figcaption> : null}
+					</figure>
+				);
+			}
+			if (block.type === 'link') {
+				const external = block.href.startsWith('http');
+				return (
+					<p class="detail-link-wrap">
+						<a
+							href={block.href}
+							class="detail-link"
+							target={external ? '_blank' : undefined}
+							rel={external ? 'noreferrer noopener' : undefined}
+						>
+							{block.label}
+						</a>
+					</p>
+				);
+			}
+			return null;
+		})
+	}
+</div>
+
+<style>
+	.detail-blocks {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding-top: 0.25rem;
+	}
+
+	.detail-p {
+		margin: 0;
+		color: var(--ink-muted);
+		font-size: 0.98rem;
+		font-family: var(--font-serif), var(--font-emoji);
+	}
+
+	.detail-fig {
+		margin: 0;
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		border: 1px solid rgba(31, 107, 86, 0.14);
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(42, 143, 114, 0.04));
+	}
+
+	.detail-fig img {
+		width: 100%;
+		height: auto;
+	}
+
+	.detail-fig figcaption {
+		padding: 0.5rem 0.75rem 0.65rem;
+		font-size: 0.85rem;
+		color: var(--ink-muted);
+	}
+
+	.detail-link-wrap {
+		margin: 0;
+	}
+
+	.detail-link {
+		font-weight: 600;
+		font-size: 0.95rem;
+	}
+</style>

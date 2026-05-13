@@ -1,0 +1,130 @@
+---
+/**
+ * One-open accordion for tiles (button + panel, not <details>) so max-height
+ * close animations work: browsers hide <details> body before toggle fires.
+ */
+interface Props {
+	group: string;
+}
+
+const { group } = Astro.props;
+---
+
+<div class="tile-grid" data-tile-accordion={group}>
+	<slot />
+</div>
+
+<script is:inline>
+	function prefersReducedMotion() {
+		return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	}
+
+	function openTile(tile, btn, inner) {
+		if (inner._closeTimer) {
+			clearTimeout(inner._closeTimer);
+			inner._closeTimer = null;
+		}
+		if (inner._closeEnd) {
+			inner.removeEventListener('transitionend', inner._closeEnd);
+			inner._closeEnd = null;
+		}
+
+		if (prefersReducedMotion()) {
+			btn.setAttribute('aria-expanded', 'true');
+			tile.setAttribute('data-expanded', '');
+			inner.style.maxHeight = '';
+			return;
+		}
+		btn.setAttribute('aria-expanded', 'true');
+		tile.setAttribute('data-expanded', '');
+		inner.style.maxHeight = '0px';
+		void inner.offsetHeight;
+		requestAnimationFrame(function () {
+			requestAnimationFrame(function () {
+				var h = inner.scrollHeight;
+				inner.style.maxHeight = h + 'px';
+				inner.dataset.expandedH = String(h);
+			});
+		});
+	}
+
+	function finishClose(tile, btn, inner) {
+		if (inner._closeEnd) {
+			inner.removeEventListener('transitionend', inner._closeEnd);
+			inner._closeEnd = null;
+		}
+		if (inner._closeTimer) {
+			clearTimeout(inner._closeTimer);
+			inner._closeTimer = null;
+		}
+		btn.setAttribute('aria-expanded', 'false');
+		tile.removeAttribute('data-expanded');
+	}
+
+	function closeTile(tile, btn, inner) {
+		if (inner._closeTimer) {
+			clearTimeout(inner._closeTimer);
+			inner._closeTimer = null;
+		}
+		if (inner._closeEnd) {
+			inner.removeEventListener('transitionend', inner._closeEnd);
+			inner._closeEnd = null;
+		}
+
+		if (prefersReducedMotion()) {
+			btn.setAttribute('aria-expanded', 'false');
+			tile.removeAttribute('data-expanded');
+			inner.style.maxHeight = '';
+			return;
+		}
+
+		var h = inner.scrollHeight;
+		if (h < 2) {
+			var c = parseInt(inner.dataset.expandedH || '0', 10);
+			if (c > 0) h = c;
+		}
+		inner.style.maxHeight = h + 'px';
+		void inner.offsetHeight;
+		requestAnimationFrame(function () {
+			inner.style.maxHeight = '0px';
+		});
+
+		inner._closeEnd = function (ev) {
+			if (ev.target !== inner) return;
+			if (ev.propertyName !== 'max-height') return;
+			finishClose(tile, btn, inner);
+		};
+		inner.addEventListener('transitionend', inner._closeEnd);
+
+		inner._closeTimer = setTimeout(function () {
+			finishClose(tile, btn, inner);
+		}, 600);
+	}
+
+	document.addEventListener('click', function (e) {
+		var btn = e.target && e.target.closest && e.target.closest('.tile__summary');
+		if (!btn || btn.tagName !== 'BUTTON') return;
+		var root = btn.closest('[data-tile-accordion]');
+		if (!root) return;
+		var tile = btn.closest('[data-tile-item]');
+		if (!tile) return;
+		var inner = tile.querySelector('.tile__expand-measure');
+		if (!inner) return;
+
+		var isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+		if (isOpen) {
+			closeTile(tile, btn, inner);
+			return;
+		}
+
+		root.querySelectorAll('[data-tile-item]').forEach(function (otherTile) {
+			if (otherTile === tile) return;
+			var ob = otherTile.querySelector('.tile__summary');
+			var oi = otherTile.querySelector('.tile__expand-measure');
+			if (ob && oi && ob.getAttribute('aria-expanded') === 'true') closeTile(otherTile, ob, oi);
+		});
+
+		openTile(tile, btn, inner);
+	});
+</script>

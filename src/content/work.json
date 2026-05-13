@@ -1,0 +1,43 @@
+{
+  "title": "Work",
+  "intro": "A tile view of roles and teams — expand any card for the longer story, links, and extra visuals.",
+  "items": [
+    {
+      "id": "standin-company-a",
+      "title": "Software Engineer — Company A (stand-in)",
+      "blurb": "Shipped features on the core product team; focused on reliability and developer experience.",
+      "image": { "src": "/images/placeholder.svg", "alt": "Company logo placeholder" },
+      "badges": ["TypeScript", "React", "Node.js", "PostgreSQL"],
+      "details": [
+        {
+          "type": "paragraph",
+          "text": "Replace this block with your real role: scope, impact metrics, and what you learned. The expandable area supports paragraphs, images, and outbound links."
+        },
+        {
+          "type": "image",
+          "src": "/images/placeholder.svg",
+          "alt": "Screenshot or team photo placeholder",
+          "caption": "Optional caption under an image."
+        },
+        {
+          "type": "link",
+          "href": "https://example.com",
+          "label": "Example press release or write-up (stand-in link)"
+        }
+      ]
+    },
+    {
+      "id": "standin-company-b",
+      "title": "Intern — Company B (stand-in)",
+      "blurb": "Summer internship building internal tools and onboarding flows.",
+      "image": { "src": "/images/placeholder.svg", "alt": "Internship visual placeholder" },
+      "badges": ["Python", "FastAPI", "Docker"],
+      "details": [
+        {
+          "type": "paragraph",
+          "text": "Second stand-in entry so you can preview how multiple tiles feel in the grid. Duplicate the JSON shape in work.json for each real position."
+        }
+      ]
+    }
+  ]
+}

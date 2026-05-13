@@ -1,0 +1,218 @@
+:root {
+	--paper: #f2ede4;
+	--paper-2: #e8e1d6;
+	--ink: #171512;
+	--ink-muted: #4a4640;
+	--accent: #1f6b56;
+	--accent-bright: #2a8f72;
+	--accent-soft: rgba(31, 107, 86, 0.16);
+	--accent-border: rgba(31, 107, 86, 0.35);
+	--coral: #c45c3a;
+	--coral-soft: rgba(196, 92, 58, 0.12);
+	--shadow: 0 12px 40px rgba(23, 21, 18, 0.1);
+	--shadow-hover: 0 18px 50px rgba(23, 21, 18, 0.14);
+	--radius-lg: 18px;
+	--radius-md: 12px;
+	--font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+	--font-sans: "DM Sans", system-ui, sans-serif;
+	--font-emoji: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "EmojiOne Color", sans-serif;
+	--nav-top: 1.25rem;
+	--nav-right: 1.25rem;
+	--content-max: 72rem;
+	--parallax-x: 0;
+	--parallax-y: 0;
+	--scroll-y: 0;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@keyframes page-shell-in {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Fixed decorative stack (see Layout.astro) */
+.site-bg-layers {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	overflow: hidden;
+}
+
+.site-bg-layer {
+	position: absolute;
+	inset: 0;
+}
+
+/* Base wash — replaces flat white */
+.site-bg-layer--wash {
+	background:
+		radial-gradient(ellipse 110% 85% at 50% -5%, rgba(255, 255, 255, 0.58), transparent 55%),
+		radial-gradient(ellipse 75% 55% at 100% 25%, rgba(42, 143, 114, 0.07), transparent 48%),
+		radial-gradient(ellipse 65% 50% at 0% 75%, rgba(196, 92, 58, 0.06), transparent 45%),
+		linear-gradient(185deg, var(--paper) 0%, #e4dcd0 48%, var(--paper-2) 100%);
+}
+
+/* Soft color clouds — mouse + scroll nudge on parent .site-bg-mover */
+.site-bg-mover {
+	position: absolute;
+	inset: -12%;
+	will-change: transform;
+	transform: translate(
+		calc(var(--parallax-x) * 18px + 1%),
+		calc(var(--parallax-y) * 14px + var(--scroll-y) * -0.028px)
+	);
+}
+
+.site-bg-layer--blobs {
+	mix-blend-mode: multiply;
+	opacity: 0.72;
+	background:
+		radial-gradient(circle at 18% 32%, rgba(42, 143, 114, 0.12), transparent 44%),
+		radial-gradient(circle at 90% 22%, rgba(196, 92, 58, 0.09), transparent 40%),
+		radial-gradient(circle at 62% 88%, rgba(31, 107, 86, 0.08), transparent 42%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.site-bg-layer--blobs {
+		animation: site-blob-breathe 52s ease-in-out infinite alternate;
+	}
+}
+
+@keyframes site-blob-breathe {
+	from {
+		transform: rotate(0deg) scale(1);
+		opacity: 0.68;
+	}
+	to {
+		transform: rotate(2deg) scale(1.05);
+		opacity: 0.78;
+	}
+}
+
+/* Notebook grid — subtle, scroll-linked via transform on layer */
+.site-bg-layer--grid {
+	opacity: 0.055;
+	background-image:
+		linear-gradient(rgba(23, 21, 18, 0.4) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(23, 21, 18, 0.4) 1px, transparent 1px);
+	background-size: 32px 32px;
+	background-position: 0 calc(var(--scroll-y, 0) * 0.06px);
+	transform: translateY(calc(var(--scroll-y, 0) * -0.018px));
+}
+
+/* Micro texture */
+.site-bg-layer--grain {
+	opacity: 0.035;
+	background-image: repeating-linear-gradient(
+		-22deg,
+		transparent,
+		transparent 4px,
+		rgba(23, 21, 18, 0.04) 4px,
+		rgba(23, 21, 18, 0.04) 4.5px
+	);
+}
+
+body.paper {
+	margin: 0;
+	min-height: 100vh;
+	position: relative;
+	font-family: var(--font-sans), var(--font-emoji);
+	font-size: 1.05rem;
+	line-height: 1.55;
+	color: var(--ink);
+	background-color: var(--paper);
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+a {
+	color: var(--accent-bright);
+	text-underline-offset: 0.18em;
+	font-family: inherit;
+}
+
+a:hover {
+	color: var(--accent);
+}
+
+.page-shell {
+	max-width: var(--content-max);
+	margin: 0 auto;
+	padding: 6.5rem 1.5rem 4rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.page-shell {
+		animation: page-shell-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+}
+
+@media (min-width: 768px) {
+	.page-shell {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+}
+
+.page-head {
+	margin-bottom: 2.5rem;
+}
+
+.page-head h1 {
+	font-family: var(--font-serif), var(--font-emoji);
+	font-weight: 500;
+	font-size: clamp(2rem, 4vw, 2.75rem);
+	letter-spacing: -0.02em;
+	margin: 0 0 0.75rem;
+}
+
+.page-head p {
+	margin: 0;
+	max-width: 52ch;
+	color: var(--ink-muted);
+	font-size: 1.05rem;
+}
+
+.tile-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.tile-grid > .tile {
+		animation: page-shell-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+		animation-delay: var(--tile-stagger, 0s);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.site-bg-layer--blobs {
+		animation: none !important;
+	}
+
+	.site-bg-layer--grid {
+		transform: none;
+		background-position: 0 0;
+	}
+}

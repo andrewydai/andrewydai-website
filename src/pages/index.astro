@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CollageLanding from '../components/CollageLanding.astro';
+import site from '../content/site.json';
+---
+
+<Layout currentPath="/" description={site.meta.description}>
+	<CollageLanding />
+</Layout>

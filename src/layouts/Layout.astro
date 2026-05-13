@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import FloatingNav from '../components/FloatingNav.astro';
+import site from '../content/site.json';
+
+interface Props {
+	title?: string;
+	description?: string;
+	currentPath?: string;
+}
+
+const { title, description, currentPath = '/' } = Astro.props;
+const pageTitle = title ? `${title} · ${site.meta.siteTitle}` : site.meta.siteTitle;
+const metaDescription = description ?? site.meta.description;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={metaDescription} />
+		<title>{pageTitle}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="paper">
+		<div class="site-bg-layers" aria-hidden="true">
+			<div class="site-bg-layer site-bg-layer--wash"></div>
+			<div class="site-bg-mover">
+				<div class="site-bg-layer site-bg-layer--blobs"></div>
+			</div>
+			<div class="site-bg-layer site-bg-layer--grid"></div>
+			<div class="site-bg-layer site-bg-layer--grain"></div>
+		</div>
+		<FloatingNav currentPath={currentPath} />
+		<slot />
+	</body>
+</html>
+
+<script is:inline>
+	(function () {
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		var root = document.querySelector('.site-bg-layers');
+		if (!root) return;
+		var mx = 0,
+			my = 0,
+			tx = 0,
+			ty = 0,
+			raf = null;
+		function tick() {
+			raf = null;
+			tx += (mx - tx) * 0.06;
+			ty += (my - ty) * 0.06;
+			root.style.setProperty('--parallax-x', tx.toFixed(4));
+			root.style.setProperty('--parallax-y', ty.toFixed(4));
+		}
+		function schedule() {
+			if (raf == null) raf = requestAnimationFrame(tick);
+		}
+		window.addEventListener(
+			'mousemove',
+			function (e) {
+				var w = window.innerWidth || 1,
+					h = window.innerHeight || 1;
+				mx = (e.clientX / w - 0.5) * 2;
+				my = (e.clientY / h - 0.5) * 2;
+				schedule();
+			},
+			{ passive: true },
+		);
+		function onScroll() {
+			var y = window.scrollY || 0;
+			root.style.setProperty('--scroll-y', String(Math.min(y, 1200)));
+		}
+		onScroll();
+		window.addEventListener('scroll', onScroll, { passive: true });
+	})();
+</script>

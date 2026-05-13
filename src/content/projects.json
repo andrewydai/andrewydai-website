@@ -1,0 +1,42 @@
+{
+  "title": "Projects",
+  "intro": "Side projects and experiments — each tile collapses to a glance; open it for write-ups, diagrams, or repo links.",
+  "items": [
+    {
+      "id": "standin-cli-tool",
+      "title": "CLI productivity tool (stand-in)",
+      "blurb": "A small command-line helper that wraps common git workflows for your team.",
+      "image": { "src": "/images/placeholder.svg", "alt": "Terminal mock placeholder" },
+      "badges": ["Rust", "CLI", "Git"],
+      "details": [
+        {
+          "type": "paragraph",
+          "text": "Describe the problem, your approach, and tradeoffs. This section is meant for richer narrative than the blurb above."
+        },
+        {
+          "type": "link",
+          "href": "https://github.com",
+          "label": "GitHub repository (stand-in)"
+        }
+      ]
+    },
+    {
+      "id": "standin-dashboard",
+      "title": "Personal analytics dashboard (stand-in)",
+      "blurb": "Charts local habits and goals without sending data to the cloud.",
+      "image": { "src": "/images/placeholder.svg", "alt": "Dashboard placeholder" },
+      "badges": ["Astro", "SQLite", "Charts"],
+      "details": [
+        {
+          "type": "paragraph",
+          "text": "Add screenshots, architecture notes, or a GIF of the UI in action using the image block type in projects.json."
+        },
+        {
+          "type": "image",
+          "src": "/images/placeholder.svg",
+          "alt": "UI screenshot placeholder"
+        }
+      ]
+    }
+  ]
+}

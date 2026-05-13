@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TileGrid from '../components/TileGrid.astro';
+import ExpandableTile from '../components/ExpandableTile.astro';
+import projects from '../content/projects.json';
+import type { TileItem } from '../types/content';
+
+const items = projects.items as TileItem[];
+const accordionName = 'tiles-projects';
+---
+
+<Layout title={projects.title} description={projects.intro} currentPath="/projects">
+	<main class="page-shell">
+		<header class="page-head">
+			<h1>{projects.title}</h1>
+			<p>{projects.intro}</p>
+		</header>
+		<TileGrid group={accordionName}>
+			{items.map((item, index) => (
+				<ExpandableTile item={item} tileIndex={index} />
+			))}
+		</TileGrid>
+	</main>
+</Layout>
