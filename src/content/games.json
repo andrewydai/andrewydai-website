@@ -3,33 +3,55 @@
   "intro": "Game jams, prototypes, and playful systems — same tile pattern as Work and Projects.",
   "items": [
     {
-      "id": "standin-jam-game",
-      "title": "48-hour jam — \"Neon Courier\" (stand-in)",
-      "blurb": "Top-down delivery game made for a weekend theme: \"fragile packages.\"",
-      "image": { "src": "/images/placeholder.svg", "alt": "Game screenshot placeholder" },
+      "id": "territory-conquest",
+      "title": "Territory Conquest",
+      "blurb": "Strategy prototype played on a treemap of named territories—expand, count, and contest the board.",
+      "image": { "src": "/images/territory_conquest.gif", "alt": "Territory Conquest — treemap territory selection" },
       "badges": ["Godot", "Jam", "Pixel art"],
       "details": [
         {
-          "type": "paragraph",
-          "text": "Document your design pillars, what you cut for time, and what you'd revisit. Link to itch.io or a WebGL build when you have one."
-        },
-        {
-          "type": "link",
-          "href": "https://itch.io",
-          "label": "Itch.io page (stand-in)"
+          "type": "split",
+          "mediaPosition": "start",
+          "media": {
+            "src": "/images/territory_conquest.gif",
+            "alt": "Territory Conquest gameplay animation",
+            "caption": "Territory layout and hover selection in play."
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "text": "Document your design pillars, what you cut for time, and what you'd revisit. Link to itch.io or a WebGL build when you have one."
+            },
+            {
+              "type": "link",
+              "href": "https://itch.io",
+              "label": "Itch.io page (stand-in)"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "standin-puzzle",
-      "title": "Puzzle prototype (stand-in)",
-      "blurb": "Grid-based puzzle exploring line-of-sight mechanics.",
-      "image": { "src": "/images/placeholder.svg", "alt": "Puzzle placeholder" },
+      "id": "tetris-romantik",
+      "title": "Tetris Romantik",
+      "blurb": "Pixel-art kingdom builder—place land cards on a grid to grow farms, forests, and settlements.",
+      "image": { "src": "/images/tetris_romantik.gif", "alt": "Tetris Romantik — grid placement and card hand" },
       "badges": ["Unity", "C#", "Design"],
       "details": [
         {
-          "type": "paragraph",
-          "text": "Use badges for engine, role (solo / team), and notable systems (AI, procgen, etc.)."
+          "type": "split",
+          "mediaPosition": "start",
+          "media": {
+            "src": "/images/tetris_romantik.gif",
+            "alt": "Tetris Romantik gameplay animation",
+            "caption": "Score, board state, and the card hand during a run."
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "text": "Use badges for engine, role (solo / team), and notable systems (AI, procgen, etc.)."
+            }
+          ]
         }
       ]
     }

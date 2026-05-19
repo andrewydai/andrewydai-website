@@ -28,348 +28,282 @@ type CollageLinkCard = {
 type CollagePiece = CollageText | CollagePhoto | CollageLinkCard;
 
 const pieces = site.landingCollage as CollagePiece[];
+const intro = pieces.find((piece): piece is CollageText => piece.kind === 'text' && piece.id === 'intro');
+const welcomePhoto = pieces.find((piece): piece is CollagePhoto => piece.kind === 'photo');
+const collagePieces = pieces.filter((piece) => piece.id !== intro?.id && piece.id !== welcomePhoto?.id);
 
-type Run =
-	| { kind: 'hero'; text: CollageText; anim: number }
-	| { kind: 'prose'; text: CollageText; anim: number }
-	| { kind: 'proseLink'; link: CollageLinkCard; anim: number }
-	| {
-			kind: 'zigzag';
-			photo: CollagePhoto;
-			mode: 'text' | 'link' | 'caption';
-			text?: CollageText;
-			link?: CollageLinkCard;
-			flip: number;
-			anim: number;
-	  }
-	| { kind: 'figureFull'; photo: CollagePhoto; anim: number };
-
-const runs: Run[] = [];
-let zigzagFlip = 0;
-let anim = 0;
-
-for (let i = 0; i < pieces.length; i++) {
-	const p = pieces[i];
-	const next = pieces[i + 1];
-
-	if (p.kind === 'text' && p.id === 'intro') {
-		runs.push({ kind: 'hero', text: p, anim: anim++ });
-		continue;
-	}
-
-	if (p.kind === 'photo') {
-		if (next?.kind === 'text') {
-			runs.push({
-				kind: 'zigzag',
-				photo: p,
-				mode: 'text',
-				text: next,
-				flip: zigzagFlip++ % 2,
-				anim: anim++,
-			});
-			i++;
-			continue;
-		}
-		if (next?.kind === 'linkCard') {
-			runs.push({
-				kind: 'zigzag',
-				photo: p,
-				mode: 'link',
-				link: next,
-				flip: zigzagFlip++ % 2,
-				anim: anim++,
-			});
-			i++;
-			continue;
-		}
-		if (p.caption) {
-			runs.push({
-				kind: 'zigzag',
-				photo: p,
-				mode: 'caption',
-				flip: zigzagFlip++ % 2,
-				anim: anim++,
-			});
-			continue;
-		}
-		runs.push({ kind: 'figureFull', photo: p, anim: anim++ });
-		continue;
-	}
-
-	if (p.kind === 'text') {
-		runs.push({ kind: 'prose', text: p, anim: anim++ });
-		continue;
-	}
-
-	if (p.kind === 'linkCard') {
-		runs.push({ kind: 'proseLink', link: p, anim: anim++ });
-		continue;
-	}
-}
-
-const delay = (n: number) => `${Math.min(n, 20) * 65}ms`;
+const rotationClass = (index: number) => `landing-rot--${index % 7}`;
+const span = (piece: CollagePiece, index: number) => {
+	if (piece.kind === 'photo') return index % 3 === 0 ? 'wide' : 'medium';
+	if (piece.kind === 'text') return piece.span ?? 'medium';
+	return index % 2 === 0 ? 'medium' : 'narrow';
+};
 ---
 
-<section class="blog-landing" aria-label="Introduction">
-	<div class="blog-landing__inner">
+<main class="page-shell landing-shell">
+	<header class="page-head landing-head">
+		<p class="landing-kicker">Personal scrapbook</p>
+		<h1>{site.profile.name}</h1>
+		<p>{site.profile.shortBio}</p>
+	</header>
+
+	<div class="landing-collage">
 		{
-			runs.map((run) => {
-				const d = delay(run.anim);
-				if (run.kind === 'hero') {
+			welcomePhoto ? (
+				<figure class="landing-scrap landing-scrap--welcome landing-rot--welcome">
+					<div class="landing-frame landing-frame--welcome">
+						<img src={welcomePhoto.src} alt={welcomePhoto.alt} width="1100" height="760" fetchpriority="high" />
+					</div>
+					<figcaption>
+						<strong>Welcome in.</strong>
+						<span>{intro?.body ?? welcomePhoto.caption}</span>
+					</figcaption>
+				</figure>
+			) : null
+		}
+
+		{
+			collagePieces.map((piece, index) => {
+				const rotClass = rotationClass(index);
+				const pieceSpan = span(piece, index);
+
+				if (piece.kind === 'photo') {
 					return (
-						<div class="blog-landing__hero blog-enter" style={`--blog-d: ${d}`} data-id={run.text.id}>
-							<p class="blog-landing__hero-text">{run.text.body}</p>
-						</div>
-					);
-				}
-				if (run.kind === 'prose') {
-					return (
-						<p class="blog-landing__prose blog-enter" style={`--blog-d: ${d}`} data-id={run.text.id}>
-							{run.text.body}
-						</p>
-					);
-				}
-				if (run.kind === 'proseLink') {
-					const L = run.link;
-					return (
-						<p class="blog-landing__prose blog-enter" style={`--blog-d: ${d}`} data-id={L.id}>
-							<a class="blog-landing__inline-a" href={L.href}>
-								{L.title}
-							</a>
-							{L.text ? ` ${L.text}` : ''}
-						</p>
-					);
-				}
-				if (run.kind === 'figureFull') {
-					const ph = run.photo;
-					return (
-						<figure class="blog-landing__full blog-enter" style={`--blog-d: ${d}`} data-id={ph.id}>
-							<img src={ph.src} alt={ph.alt} loading="lazy" width="1100" height="720" />
-							{ph.caption ? <figcaption>{ph.caption}</figcaption> : null}
+						<figure class={`landing-scrap landing-scrap--${pieceSpan} ${rotClass}`}>
+							<div class="landing-frame">
+								<img src={piece.src} alt={piece.alt} loading="lazy" width="800" height="600" />
+							</div>
+							{piece.caption ? <figcaption>{piece.caption}</figcaption> : null}
 						</figure>
 					);
 				}
-				if (run.kind === 'zigzag') {
-					const ph = run.photo;
-					const flip = run.flip;
+
+				if (piece.kind === 'text') {
 					return (
-						<article class="blog-landing__row blog-enter" style={`--blog-d: ${d}`} data-flip={flip} data-id={ph.id}>
-							<div class="blog-landing__row-text">
-								{run.mode === 'text' && run.text ? <p class="blog-landing__row-p">{run.text.body}</p> : null}
-								{run.mode === 'link' && run.link ? (
-									<p class="blog-landing__row-p">
-										<a class="blog-landing__inline-a" href={run.link.href}>
-											{run.link.title}
-										</a>
-										{run.link.text ? ` ${run.link.text}` : ''}
-									</p>
-								) : null}
-								{run.mode === 'caption' && ph.caption ? <p class="blog-landing__row-p blog-landing__row-p--muted">{ph.caption}</p> : null}
-							</div>
-							<div class="blog-landing__row-media">
-								<img src={ph.src} alt={ph.alt} loading="lazy" width="900" height="700" />
-							</div>
-						</article>
+						<aside class={`landing-scrap landing-note landing-scrap--${pieceSpan} ${rotClass}`}>
+							<p>{piece.body}</p>
+						</aside>
 					);
 				}
+
+				if (piece.kind === 'linkCard') {
+					return (
+						<div class={`landing-scrap landing-scrap--${pieceSpan} ${rotClass}`}>
+							<a class="landing-note landing-note--link" href={piece.href}>
+								<span>{piece.eyebrow}</span>
+								<strong>{piece.title}</strong>
+								<p>{piece.text}</p>
+							</a>
+						</div>
+					);
+				}
+
 				return null;
 			})
 		}
 	</div>
-</section>
+</main>
 
 <style>
-	@keyframes blog-enter {
-		from {
-			opacity: 0;
-			transform: translateY(16px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
+	.landing-shell {
+		max-width: 76rem;
 	}
 
-	@keyframes hero-ring {
-		0%,
-		100% {
-			box-shadow:
-				inset 0 0 0 1px rgba(42, 143, 114, 0.1),
-				0 0 0 0 rgba(42, 143, 114, 0);
-		}
-		50% {
-			box-shadow:
-				inset 0 0 0 1px rgba(42, 143, 114, 0.2),
-				0 0 40px rgba(42, 143, 114, 0.14);
-		}
+	.landing-head {
+		margin-bottom: 1.75rem;
 	}
 
-	.blog-enter {
-		animation: blog-enter 0.58s cubic-bezier(0.22, 1, 0.36, 1) both;
-		animation-delay: var(--blog-d, 0s);
+	.landing-kicker {
+		margin: 0 0 0.35rem;
+		font-family: var(--font-sans);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
 	}
 
-	.blog-landing {
-		padding: 6rem 1.25rem 3.5rem;
-	}
-
-	.blog-landing__inner {
-		max-width: 48rem;
-		margin: 0 auto;
-		font-family: var(--font-serif), var(--font-emoji);
-		font-size: 1.12rem;
-		line-height: 1.72;
-		color: var(--ink);
-	}
-
-	.blog-landing__hero {
-		margin: 0 0 2rem;
-		padding: 1.45rem 1.5rem 1.55rem;
-		border-radius: var(--radius-lg);
-		background:
-			linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, transparent 52%),
-			linear-gradient(165deg, rgba(42, 143, 114, 0.09), rgba(196, 92, 58, 0.05)),
-			rgba(255, 253, 248, 0.98);
-		border: 1px solid rgba(31, 107, 86, 0.18);
-		box-shadow:
-			var(--shadow),
-			0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-		position: relative;
-	}
-
-	.blog-landing__hero::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		border-radius: inherit;
-		pointer-events: none;
-	}
-
-	@media (prefers-reduced-motion: no-preference) {
-		.blog-landing__hero::after {
-			animation: hero-ring 8s ease-in-out infinite;
-		}
-	}
-
-	.blog-landing__hero-text {
-		margin: 0;
-		position: relative;
-		z-index: 1;
-		font-family: var(--font-serif), var(--font-emoji);
-		font-size: clamp(1.48rem, 3.2vw, 2.05rem);
-		font-weight: 650;
-		line-height: 1.28;
-		letter-spacing: -0.035em;
-		color: var(--ink);
-		text-wrap: balance;
-	}
-
-	.blog-landing__prose {
-		margin: 0 0 1.35em;
-		text-align: left;
-		hyphens: auto;
-	}
-
-	.blog-landing__inline-a {
-		font-weight: 700;
-		color: var(--accent-bright);
-		text-decoration: none;
-		border-bottom: 2px solid rgba(42, 143, 114, 0.35);
-		transition:
-			color 0.2s ease,
-			border-color 0.2s ease;
-	}
-
-	.blog-landing__inline-a:hover {
-		color: var(--coral);
-		border-color: rgba(196, 92, 58, 0.45);
-	}
-
-	/* Two-column blog rows: flip alternates image left/right */
-	.blog-landing__row {
+	.landing-collage {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: clamp(1rem, 3.5vw, 2rem);
-		align-items: center;
-		margin: 0 0 2.35rem;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: 1.25rem;
+		align-items: start;
 	}
 
-	.blog-landing__row[data-flip='1'] .blog-landing__row-text {
-		order: 2;
-	}
-
-	.blog-landing__row[data-flip='1'] .blog-landing__row-media {
-		order: 1;
-	}
-
-	.blog-landing__row-p {
+	.landing-scrap {
 		margin: 0;
-		font-size: 1.06rem;
-		line-height: 1.68;
+		grid-column: span 12;
+		transform: rotate(var(--rot, 0deg));
+		transition:
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
 	}
 
-	.blog-landing__row-p--muted {
-		color: var(--ink-muted);
-		font-size: 0.98rem;
+	.landing-scrap:hover {
+		transform: rotate(var(--rot, 0deg)) translateY(-3px);
 	}
 
-	.blog-landing__row-media {
-		min-width: 0;
+	.landing-rot--welcome {
+		--rot: -1.2deg;
 	}
 
-	.blog-landing__row-media img {
+	.landing-rot--0 {
+		--rot: -2deg;
+	}
+
+	.landing-rot--1 {
+		--rot: 1.5deg;
+	}
+
+	.landing-rot--2 {
+		--rot: -1.2deg;
+	}
+
+	.landing-rot--3 {
+		--rot: 0.8deg;
+	}
+
+	.landing-rot--4 {
+		--rot: 2deg;
+	}
+
+	.landing-rot--5 {
+		--rot: -0.7deg;
+	}
+
+	.landing-rot--6 {
+		--rot: 1.1deg;
+	}
+
+	.landing-scrap--welcome {
+		grid-column: span 12;
+	}
+
+	@media (min-width: 640px) {
+		.landing-scrap--narrow {
+			grid-column: span 5;
+		}
+
+		.landing-scrap--medium {
+			grid-column: span 7;
+		}
+
+		.landing-scrap--wide,
+		.landing-scrap--welcome {
+			grid-column: span 12;
+		}
+	}
+
+	@media (min-width: 960px) {
+		.landing-scrap--narrow {
+			grid-column: span 4;
+		}
+
+		.landing-scrap--medium {
+			grid-column: span 5;
+		}
+
+		.landing-scrap--wide {
+			grid-column: span 8;
+		}
+
+		.landing-scrap--welcome {
+			grid-column: span 8;
+		}
+	}
+
+	.landing-frame {
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		border: 1px solid rgba(28, 27, 25, 0.08);
+		box-shadow: var(--shadow);
+		background: rgba(255, 253, 248, 0.9);
+	}
+
+	.landing-frame img {
 		width: 100%;
-		height: auto;
-		border-radius: 8px;
-		border: 1px solid rgba(31, 107, 86, 0.15);
-		box-shadow: 0 10px 28px rgba(23, 21, 18, 0.08);
+		aspect-ratio: 5 / 4;
+		object-fit: cover;
 	}
 
-	.blog-landing__full {
-		margin: 0 0 2.25rem;
-		text-align: center;
+	.landing-frame--welcome img {
+		aspect-ratio: 16 / 10;
 	}
 
-	.blog-landing__full img {
-		margin: 0 auto;
-		width: min(100%, 36rem);
-		height: auto;
-		border-radius: 10px;
-		border: 1px solid rgba(31, 107, 86, 0.14);
-		box-shadow: 0 12px 36px rgba(23, 21, 18, 0.1);
-	}
-
-	.blog-landing__full figcaption {
-		margin: 0.55rem auto 0;
-		max-width: 36ch;
-		font-family: var(--font-sans), var(--font-emoji);
-		font-size: 0.88rem;
-		line-height: 1.45;
+	.landing-scrap figcaption {
+		margin-top: 0.6rem;
+		font-family: var(--font-serif);
+		font-size: 1.02rem;
 		color: var(--ink-muted);
+		max-width: 42ch;
+		line-height: 1.45;
 	}
 
-	@media (max-width: 640px) {
-		.blog-landing__row {
-			grid-template-columns: 1fr;
-			margin-bottom: 2rem;
-		}
+	.landing-scrap--welcome figcaption {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		max-width: 54ch;
+		font-size: 1.08rem;
+	}
 
-		.blog-landing__row[data-flip='1'] .blog-landing__row-text,
-		.blog-landing__row[data-flip='1'] .blog-landing__row-media {
-			order: unset;
-		}
+	.landing-scrap--welcome figcaption strong {
+		font-family: var(--font-serif);
+		font-size: clamp(1.55rem, 3vw, 2.35rem);
+		font-weight: 600;
+		line-height: 1.05;
+		letter-spacing: -0.04em;
+		color: var(--ink);
+	}
 
-		.blog-landing__row-media {
-			max-width: 22rem;
-		}
+	.landing-note {
+		display: block;
+		padding: 1rem 1.05rem;
+		border-radius: var(--radius-md);
+		border: 1px solid rgba(28, 27, 25, 0.08);
+		box-shadow: var(--shadow);
+		background: rgba(255, 253, 248, 0.9);
+		text-decoration: none;
+	}
+
+	.landing-note p {
+		margin: 0;
+		font-family: var(--font-serif);
+		font-size: 1.02rem;
+		color: var(--ink-muted);
+		line-height: 1.45;
+	}
+
+	.landing-note--link span {
+		display: block;
+		margin-bottom: 0.35rem;
+		font-family: var(--font-sans);
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	.landing-note--link strong {
+		display: block;
+		font-family: var(--font-serif);
+		font-size: 1.45rem;
+		font-weight: 600;
+		line-height: 1.05;
+		letter-spacing: -0.04em;
+		color: var(--ink);
+	}
+
+	.landing-note--link p {
+		margin-top: 0.55rem;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.blog-enter,
-		.blog-landing__hero {
-			animation: none !important;
-			opacity: 1;
+		.landing-scrap,
+		.landing-scrap:hover {
 			transform: none;
+			transition: none;
 		}
 	}
 </style>

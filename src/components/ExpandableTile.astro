@@ -8,9 +8,48 @@ interface Props {
 }
 
 const { item, tileIndex = 0 } = Astro.props;
+const thumbObjectFit = item.image.objectFit ?? 'cover';
+const thumbContain = thumbObjectFit === 'contain';
 const stagger = `${Math.min(tileIndex, 12) * 55}ms`;
 const panelId = `tile-panel-${item.id}`;
 const summaryId = `tile-summary-${item.id}`;
+
+function parseYearMonth(ym: string): { iso: string; label: string } | null {
+	const m = ym.trim().match(/^(\d{4})-(\d{2})$/);
+	if (!m) return null;
+	const y = Number(m[1]);
+	const mo = Number(m[2]);
+	if (mo < 1 || mo > 12) return null;
+	const d = new Date(y, mo - 1);
+	return {
+		iso: `${m[1]}-${m[2]}`,
+		label: d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+	};
+}
+
+const structuredHeading = Boolean(item.organization && item.role);
+
+let tenureParsed: {
+	start: { iso: string; label: string };
+	end: { iso: string; label: string } | null;
+} | null = null;
+if (item.tenure?.start) {
+	const start = parseYearMonth(item.tenure.start);
+	if (start) {
+		const rawEnd = item.tenure.end;
+		if (rawEnd == null || rawEnd === '') {
+			tenureParsed = { start, end: null };
+		} else {
+			const end = parseYearMonth(rawEnd);
+			if (end) tenureParsed = { start, end };
+		}
+	}
+}
+const tenureLabel = tenureParsed
+	? tenureParsed.end
+		? `${tenureParsed.start.label} – ${tenureParsed.end.label}`
+		: `${tenureParsed.start.label} – Present`
+	: null;
 ---
 
 <article class="tile" data-tile-item style={`--tile-stagger: ${stagger}`}>
@@ -21,11 +60,47 @@ const summaryId = `tile-summary-${item.id}`;
 		aria-expanded="false"
 		aria-controls={panelId}
 	>
-		<div class="tile__thumb" aria-hidden="true">
-			<img src={item.image.src} alt="" loading="lazy" width="160" height="160" />
+		<div class:list={['tile__thumb', thumbContain && 'tile__thumb--contain']} aria-hidden="true">
+			<img
+				src={item.image.src}
+				alt=""
+				width="72"
+				height="72"
+				loading="lazy"
+				decoding="async"
+			/>
 		</div>
 		<div class="tile__body">
-			<h2 class="tile__title">{item.title}</h2>
+			<div class="tile__heading-row">
+				<div class="tile__heading-main">
+					{
+						structuredHeading ? (
+							<h2 class="tile__title tile__title--stacked">
+								<span class="tile__company">{item.organization}</span>
+								<span class="tile__role">{item.role}</span>
+							</h2>
+						) : (
+							<h2 class="tile__title">{item.title}</h2>
+						)
+					}
+				</div>
+				{
+					tenureParsed ? (
+						<p class="tile__tenure" aria-label={`Employment period: ${tenureLabel}`}>
+							<time datetime={tenureParsed.start.iso}>{tenureParsed.start.label}</time>
+							<span class="tile__tenure-sep" aria-hidden="true">
+								{' '}
+								–{' '}
+							</span>
+							{tenureParsed.end ? (
+								<time datetime={tenureParsed.end.iso}>{tenureParsed.end.label}</time>
+							) : (
+								<span>Present</span>
+							)}
+						</p>
+					) : null
+				}
+			</div>
 			<p class="tile__blurb">{item.blurb}</p>
 			{item.badges.length ? (
 				<ul class="tile__badges" aria-label="Skills and technologies">
@@ -76,8 +151,8 @@ const summaryId = `tile-summary-${item.id}`;
 	.tile__summary {
 		width: 100%;
 		margin: 0;
-		padding: 0.95rem 1rem 0.95rem 1.1rem;
-		min-height: 5.5rem;
+		padding: 0.85rem 1rem 0.85rem 1.1rem;
+		min-height: 4.85rem;
 		border: none;
 		background: transparent;
 		font: inherit;
@@ -113,9 +188,20 @@ const summaryId = `tile-summary-${item.id}`;
 	}
 
 	.tile__thumb img {
+		display: block;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		object-position: center;
+	}
+
+	.tile__thumb--contain {
+		padding: 0.35rem;
+		background: #fff;
+	}
+
+	.tile__thumb--contain img {
+		object-fit: contain;
 	}
 
 	.tile__body {
@@ -123,7 +209,20 @@ const summaryId = `tile-summary-${item.id}`;
 		min-width: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.35rem;
+		gap: 0.22rem;
+	}
+
+	.tile__heading-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 0.12rem 0.85rem;
+	}
+
+	.tile__heading-main {
+		flex: 1 1 9rem;
+		min-width: 0;
 	}
 
 	.tile__title {
@@ -136,6 +235,54 @@ const summaryId = `tile-summary-${item.id}`;
 		color: var(--ink);
 	}
 
+	.tile__title--stacked {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.18rem;
+		line-height: 1.2;
+	}
+
+	.tile__company {
+		font-family: var(--font-serif), var(--font-emoji);
+		font-size: 1.12rem;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		color: var(--ink);
+		line-height: 1.2;
+	}
+
+	.tile__role {
+		font-family: var(--font-sans);
+		font-size: 0.78rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+		color: var(--ink-muted);
+		line-height: 1.3;
+	}
+
+	.tile__tenure {
+		margin: 0;
+		flex: 0 1 auto;
+		max-width: 100%;
+		margin-left: auto;
+		text-align: right;
+		align-self: flex-start;
+		font-family: var(--font-sans);
+		font-size: 0.72rem;
+		font-weight: 500;
+		font-variant-numeric: tabular-nums;
+		letter-spacing: 0.02em;
+		color: rgba(74, 70, 64, 0.92);
+		line-height: 1.3;
+	}
+
+	.tile__tenure time {
+		font-weight: 600;
+		color: var(--ink-muted);
+	}
+
 	.tile__blurb {
 		margin: 0;
 		color: var(--ink-muted);
@@ -146,10 +293,11 @@ const summaryId = `tile-summary-${item.id}`;
 	.tile__badges {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.35rem;
+		gap: 0.3rem;
 		list-style: none;
-		margin: 0.2rem 0 0;
+		margin: 0.15rem 0 0;
 		padding: 0;
+		justify-content: flex-start;
 	}
 
 	.tile__badges li {

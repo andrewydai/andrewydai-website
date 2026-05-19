@@ -1,42 +1,197 @@
 {
   "title": "Work",
-  "intro": "A tile view of roles and teams — expand any card for the longer story, links, and extra visuals.",
+  "intro": "These are my professional experiences developing software and building 💻!",
   "items": [
     {
-      "id": "standin-company-a",
-      "title": "Software Engineer — Company A (stand-in)",
-      "blurb": "Shipped features on the core product team; focused on reliability and developer experience.",
-      "image": { "src": "/images/placeholder.svg", "alt": "Company logo placeholder" },
-      "badges": ["TypeScript", "React", "Node.js", "PostgreSQL"],
+      "id": "arcadia",
+      "title": "Software Engineer — Arcadia",
+      "organization": "Arcadia",
+      "role": "Software Engineer",
+      "tenure": { "start": "2026-05" },
+      "blurb": "Building powerful AI-enabled tools to empower the sustainability space.",
+      "image": { "src": "/images/arcadia_logo.jpeg", "alt": "Arcadia logo", "objectFit": "contain" },
+      "badges": ["TypeScript", "React", "Python", "Azure", "AWS", "Claude"],
       "details": [
         {
           "type": "paragraph",
-          "text": "Replace this block with your real role: scope, impact metrics, and what you learned. The expandable area supports paragraphs, images, and outbound links."
-        },
-        {
-          "type": "image",
-          "src": "/images/placeholder.svg",
-          "alt": "Screenshot or team photo placeholder",
-          "caption": "Optional caption under an image."
+          "text": "At Arcadia, I worked on transitioning our project to new owners during the merger of Engie Impact and Arcadia. I helped to migrate our project from AWS to Azure, rebrand our UI/UX, and create powerful new AI tools to modernize our existing software."
         },
         {
           "type": "link",
-          "href": "https://example.com",
-          "label": "Example press release or write-up (stand-in link)"
+          "href": "https://www.arcadia.com/",
+          "label": "Arcadia"
         }
       ]
     },
     {
-      "id": "standin-company-b",
-      "title": "Intern — Company B (stand-in)",
-      "blurb": "Summer internship building internal tools and onboarding flows.",
-      "image": { "src": "/images/placeholder.svg", "alt": "Internship visual placeholder" },
-      "badges": ["Python", "FastAPI", "Docker"],
+      "id": "engie-impact",
+      "title": "Software Engineer — Engie Impact",
+      "organization": "ENGIE Impact",
+      "role": "Software Engineer",
+      "tenure": { "start": "2023-10", "end": "2026-05" },
+      "blurb": "Developed high-power data pipelines and solutions for Carbon and Energy markets.",
+      "image": { "src": "/images/engie_impact_logo.jpeg", "alt": "ENGIE Impact logo", "objectFit": "contain" },
+      "badges": ["TypeScript", "React", "Python", "AWS", "Copilot"],
       "details": [
         {
           "type": "paragraph",
-          "text": "Second stand-in entry so you can preview how multiple tiles feel in the grid. Duplicate the JSON shape in work.json for each real position."
+          "text": "At Engie Impact, I worked on a large suite of sustainability and cost-saving measures for our clients."
+        },
+        {
+          "type": "paragraph",
+          "text": "My first project was transitioning our engineering team from France to America, while building on what the French team had made. Specifically, I worked on transitioning a legacy AWS S3/Glue job pipeline into a scalable Lambda/RDS based architecture. The new pipeline handles a carbon accounting volume of millions of bills, hundreds of thousands of sites, and hunderds of clients daily."
+        },
+        {
+          "type": "paragraph",
+          "text": "I then delivered two large conversion tools for our analysts to deliver better data. The first was a massive re-understanding of our units of measure and conversions logic, which required remodeling our database Schema and building a new internal API for the entire company to use a standard, consistent conversion service. The second a currency conversion service that leveraged an upstream currency scraper to provide a granular currency conversion API, both for our use in calculating client costs and for the entire internal development ecosystem."
+        },
+        {
+          "type": "paragraph",
+          "text": "My next project was re-imagining one of our largest services, EStar. Our old tooling for helping analysts navigate client portfolio's and sites was 20 years old and unable to handle the scale of data required. By building them a new platform with modern infrastructure and cloud-based scaling, our team can handle a larger volume of clients and client data. With a lion's share of the ESPM portfolio landscape, our systems handle millions of bills and tens of thousands of sites and meters."
+        },
+        {
+          "type": "paragraph",
+          "text": "One of my later projects transitioning our team to use a new Snowflake data warehouse as our primary upstream data provider. For this migration, I led the project entirely, creating architecture, organizaiton and a delivery plan that allowed us to make the huge transition on a tight deadline."
+        },
+        {
+          "type": "link",
+          "href": "https://www.engieimpact.com/",
+          "label": "Engie Impact"
         }
+      ]
+    },
+    {
+      "id": "pathai",
+      "title": "Software Engineer — PathAI",
+      "organization": "PathAI",
+      "role": "Software Engineer",
+      "tenure": { "start": "2022-09", "end": "2023-06" },
+      "blurb": "Created powerful software for AI-powered clinical trial pathology.",
+      "image": { "src": "/images/pathai_logo.png", "alt": "PathAI logo", "objectFit": "contain" },
+      "badges": ["TypeScript", "Vue.js", "Python", "Django", "AWS"],
+      "details": [
+        {
+          "type": "paragraph",
+          "text": "At PathAI, I helped build our Clinical Trial Services tool, a powerful platform for helping Pathologists view accessions, annotate them, and utilize our inhouse machine learning models to assist in their pathology."
+        },
+        {
+          "type": "paragraph",
+          "text": "I specifically worked on a new system of easily rolling out different policies and tracking policy acceptance. Working in such a regulated field required careful language and frequent updates that we needed a better method of managing."
+        },
+        {
+          "type": "paragraph",
+          "text": "I then developed and designed the proposal for creating a read-only role for production to help improve our internal auditing and incidence handling system."
+        },
+        {
+          "type": "paragraph",
+          "text": "Finally, I designed and tested a solution for migrating hundreds of thousands of rows of client data for backwards compatibility with our new platform release."
+        },
+        {
+          "type": "link",
+          "href": "https://www.pathai.com/",
+          "label": "PathAI"
+        }
+      ]
+    },
+    {
+      "id": "appfolio",
+      "title": "Software Engineer Co-op — AppFolio",
+      "organization": "AppFolio",
+      "role": "Software Engineer Co-op",
+      "tenure": { "start": "2021-01", "end": "2021-06" },
+      "blurb": "Built maintenance coordination tools that helped property teams communicate faster.",
+      "image": { "src": "/images/appfolio_logo.png", "alt": "AppFolio logo", "objectFit": "contain" },
+      "badges": ["TypeScript", "React", "GraphQL", "Ruby on Rails", "MySQL"],
+      "details": [
+        {
+          "type": "paragraph",
+          "text": "At AppFolio, I worked on the maintenance operations side of the platform, where small communication delays could turn into slower service for tenants and more manual follow-up for property teams."
+        },
+        {
+          "type": "paragraph",
+          "text": "One of my main projects was a dispatch feature that let operators send automated robocalls to technicians when new maintenance requests came in. It reduced the repetitive calling work that operators previously handled by hand and helped technicians get notified more consistently."
+        },
+        {
+          "type": "paragraph",
+          "text": "I also built a feature that surfaced tenant text conversations with technicians and operators directly to clients. That gave property managers a clearer view into what had already been communicated, making it easier to understand the status and history of a maintenance request."
+        },
+        {
+          "type": "paragraph",
+          "text": "Later in the co-op, I designed and implemented a calendar component for planning technician availability. The new interface replaced a spreadsheet-driven process with a more visual workflow, helping clients see who was available and plan work without constantly reading and updating rows by hand."
+        },
+        {
+          "type": "link",
+          "href": "https://www.appfolio.com/",
+          "label": "AppFolio"
+        }
+      ]
+    },
+    {
+      "id": "poweradvocate",
+      "title": "Software Engineer Co-op — PowerAdvocate",
+      "organization": "PowerAdvocate",
+      "role": "Software Engineer Co-op",
+      "tenure": { "start": "2020-01", "end": "2020-07" },
+      "blurb": "Modernized supplier discovery and data workflows for energy procurement teams.",
+      "image": { "src": "/images/poweradvocate_logo.jpeg", "alt": "PowerAdvocate logo", "objectFit": "contain" },
+      "badges": ["JavaScript", "Java", "React", "ElasticSearch", "Oracle DB", "AWS"],
+      "details": [
+        {
+          "type": "paragraph",
+          "text": "At PowerAdvocate, I worked on software for energy procurement teams running supply chain bidding events, where clients needed to make confident supplier decisions from large sets of operational and market data."
+        },
+        {
+          "type": "paragraph",
+          "text": "I developed a relevance-based supplier search experience to help clients find stronger supplier matches for bidding events. The project replaced an older SQL search page with a more modern workflow that ranked results around what users were actually trying to find."
+        },
+        {
+          "type": "paragraph",
+          "text": "On the data side, I constructed an internal pipeline that brought together multiple sources of truth into a single warehouse. Using AWS Lambda, Step Functions, and Redshift, the pipeline gave other platform features a cleaner and more reliable way to consume shared supplier and procurement data."
+        },
+        {
+          "type": "paragraph",
+          "text": "I also took on a team-building role during the shift to remote work. I led the creation of a remote onboarding experience for incoming co-ops, partnering with HR and Technology teams to run workshops, introduce project context, and create space for new engineers to connect with each other."
+        },
+        {
+          "type": "link",
+          "href": "https://www.woodmac.com/",
+          "label": "Wood Mackenzie"
+        }
+      ]
+    },
+    {
+      "id": "northeastern",
+      "title": "Research Assistant — Northeastern University",
+      "organization": "Northeastern University",
+      "role": "Research Assistant",
+      "tenure": { "start": "2019-01", "end": "2019-07" },
+      "blurb": "Built research tooling for bounded exploration of program and system states.",
+      "image": { "src": "/images/northeastern_logo.png", "alt": "Northeastern logo", "objectFit": "contain" },
+      "badges": ["Java", "Racket", "Research"],
+      "details": [
+        {
+          "type": "paragraph",
+          "text": "At Northeastern University's Khoury College of Computer Sciences, I worked as a research assistant on tooling for reasoning about program and system behavior. The work focused on exploring what a system could do within carefully defined bounds."
+        },
+        {
+          "type": "paragraph",
+          "text": "I created a tool that used stack depth bounds to exhaustively search through a system's possible states. By constraining the search space, the tool could make systematic exploration more practical while still giving researchers a meaningful view into reachable behavior."
+        },
+        {
+          "type": "paragraph",
+          "text": "I then evaluated the tool against other methodologies developed by the team, comparing which approaches were better suited to different properties and programs. That comparison helped clarify where each technique was strongest and how the team could reason about tradeoffs between completeness, bounds, and practical runtime."
+        },
+        {
+          "type": "link",
+          "href": "https://www.khoury.northeastern.edu/",
+          "label": "Khoury College of Computer Sciences"
+        },
+        {
+          "type": "link",
+          "href": "https://arxiv.org/pdf/1804.04766",
+          "label": "Paper"
+        }
+
       ]
     }
   ]

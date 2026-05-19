@@ -16,14 +16,14 @@
     {
       "kind": "text",
       "id": "intro",
-      "body": "Hi ✨ I'm Andrew — welcome to my corner of the internet: part portfolio, part diary, part organized chaos."
+      "body": "Hi, I'm Andrew. Come in, look around, and treat this like a slightly over-organized scrapbook of work, games, projects, and the things I do away from a keyboard."
     },
     {
       "kind": "photo",
       "id": "photo-1",
-      "src": "/images/placeholder.svg",
-      "alt": "Stand-in portrait or scene",
-      "caption": "A stand-in frame — swap this path for a real photo in site assets."
+      "src": "/images/intro_1.jpg",
+      "alt": "Andrew sitting outside at a cafe",
+      "caption": "Welcome in. This is the front door photo."
     },
     {
       "kind": "linkCard",
@@ -31,19 +31,19 @@
       "href": "/work",
       "eyebrow": "Professional",
       "title": "Work",
-      "text": "Roles, teams, and problems I've helped ship. The serious shelf of the scrapbook."
+      "text": "Roles, teams, and products I've helped build and deliver!"
     },
     {
       "kind": "photo",
       "id": "photo-2",
-      "src": "/images/placeholder.svg",
-      "alt": "Workspace placeholder",
-      "caption": "Replace with a desk, whiteboard, or coffee shop shot."
+      "src": "/images/intro_2.jpg",
+      "alt": "Andrew standing in a garden",
+      "caption": "A softer note from outside the work tabs."
     },
     {
       "kind": "text",
       "id": "mid",
-      "body": "I like interfaces that feel handwritten: generous whitespace, soft edges, and navigation that floats instead of shouts."
+      "body": "I like interfaces that feel a little handmade: soft edges, visible texture, and navigation that feels like finding a note pinned to a photo."
     },
     {
       "kind": "linkCard",
@@ -72,9 +72,9 @@
     {
       "kind": "photo",
       "id": "photo-3",
-      "src": "/images/placeholder.svg",
-      "alt": "Hobby placeholder",
-      "caption": "A visual breadcrumb toward the hobbies page."
+      "src": "/images/intro_3.jpg",
+      "alt": "Andrew hiking with a wide mountain view behind him",
+      "caption": "A breadcrumb toward the hobbies page: hikes, photos, and whatever else keeps life wide."
     }
   ]
 }
