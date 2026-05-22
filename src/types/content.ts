@@ -59,6 +59,9 @@ export interface HobbyItem {
 	id: string;
 	blurb: string;
 	image: { src: string; alt: string };
+	/** Opens in a new tab when set (e.g. YouTube). */
+	href?: string;
+	linkLabel?: string;
 	rotation?: number;
 	span?: 'narrow' | 'medium' | 'wide';
 }

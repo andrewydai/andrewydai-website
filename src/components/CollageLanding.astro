@@ -1,309 +1,160 @@
 ---
 import site from '../content/site.json';
+import SiteStage from './SiteStage.astro';
 
-type CollageText = {
-	kind: 'text';
-	id: string;
-	body: string;
-	span?: 'medium' | 'wide';
-};
+const { name, shortBio } = site.profile;
+const { heroImage } = site.landing;
 
-type CollagePhoto = {
-	kind: 'photo';
-	id: string;
-	src: string;
-	alt: string;
-	caption?: string;
-};
-
-type CollageLinkCard = {
-	kind: 'linkCard';
-	id: string;
-	href: string;
-	eyebrow: string;
-	title: string;
-	text: string;
-};
-
-type CollagePiece = CollageText | CollagePhoto | CollageLinkCard;
-
-const pieces = site.landingCollage as CollagePiece[];
-const intro = pieces.find((piece): piece is CollageText => piece.kind === 'text' && piece.id === 'intro');
-const welcomePhoto = pieces.find((piece): piece is CollagePhoto => piece.kind === 'photo');
-const collagePieces = pieces.filter((piece) => piece.id !== intro?.id && piece.id !== welcomePhoto?.id);
-
-const rotationClass = (index: number) => `landing-rot--${index % 7}`;
-const span = (piece: CollagePiece, index: number) => {
-	if (piece.kind === 'photo') return index % 3 === 0 ? 'wide' : 'medium';
-	if (piece.kind === 'text') return piece.span ?? 'medium';
-	return index % 2 === 0 ? 'medium' : 'narrow';
-};
+const [firstName, ...rest] = name.split(' ');
+const lastName = rest.join(' ');
 ---
 
-<main class="page-shell landing-shell">
-	<header class="page-head landing-head">
-		<p class="landing-kicker">Personal scrapbook</p>
-		<h1>{site.profile.name}</h1>
-		<p>{site.profile.shortBio}</p>
-	</header>
+<SiteStage>
+	<main class="page-shell landing-shell">
+		<section class="landing-hero" aria-labelledby="landing-title">
+			<div class="landing-hero__copy">
+				<h1 id="landing-title" class="landing-title">
+					<span class="landing-title__first">{firstName}</span>
+					{lastName ? <span class="landing-title__last">{lastName}</span> : null}
+				</h1>
+				<p class="landing-blurb">{shortBio}</p>
+			</div>
 
-	<div class="landing-collage">
-		{
-			welcomePhoto ? (
-				<figure class="landing-scrap landing-scrap--welcome landing-rot--welcome">
-					<div class="landing-frame landing-frame--welcome">
-						<img src={welcomePhoto.src} alt={welcomePhoto.alt} width="1100" height="760" fetchpriority="high" />
-					</div>
-					<figcaption>
-						<strong>Welcome in.</strong>
-						<span>{intro?.body ?? welcomePhoto.caption}</span>
-					</figcaption>
-				</figure>
-			) : null
-		}
-
-		{
-			collagePieces.map((piece, index) => {
-				const rotClass = rotationClass(index);
-				const pieceSpan = span(piece, index);
-
-				if (piece.kind === 'photo') {
-					return (
-						<figure class={`landing-scrap landing-scrap--${pieceSpan} ${rotClass}`}>
-							<div class="landing-frame">
-								<img src={piece.src} alt={piece.alt} loading="lazy" width="800" height="600" />
-							</div>
-							{piece.caption ? <figcaption>{piece.caption}</figcaption> : null}
-						</figure>
-					);
-				}
-
-				if (piece.kind === 'text') {
-					return (
-						<aside class={`landing-scrap landing-note landing-scrap--${pieceSpan} ${rotClass}`}>
-							<p>{piece.body}</p>
-						</aside>
-					);
-				}
-
-				if (piece.kind === 'linkCard') {
-					return (
-						<div class={`landing-scrap landing-scrap--${pieceSpan} ${rotClass}`}>
-							<a class="landing-note landing-note--link" href={piece.href}>
-								<span>{piece.eyebrow}</span>
-								<strong>{piece.title}</strong>
-								<p>{piece.text}</p>
-							</a>
-						</div>
-					);
-				}
-
-				return null;
-			})
-		}
-	</div>
-</main>
+			<figure class="landing-hero__photo">
+				<div class="landing-photo-frame">
+					<img
+						src={heroImage.src}
+						alt={heroImage.alt}
+						width="1100"
+						height="760"
+						fetchpriority="high"
+					/>
+				</div>
+			</figure>
+		</section>
+	</main>
+</SiteStage>
 
 <style>
 	.landing-shell {
 		max-width: 76rem;
+		padding-top: clamp(5rem, 14vh, 7.5rem);
+		padding-bottom: clamp(3rem, 10vh, 5rem);
 	}
 
-	.landing-head {
-		margin-bottom: 1.75rem;
-	}
-
-	.landing-kicker {
-		margin: 0 0 0.35rem;
-		font-family: var(--font-sans);
-		font-size: 0.72rem;
-		font-weight: 800;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--accent);
-	}
-
-	.landing-collage {
+	.landing-hero {
 		display: grid;
-		grid-template-columns: repeat(12, minmax(0, 1fr));
-		gap: 1.25rem;
-		align-items: start;
+		gap: 2rem;
+		align-items: center;
 	}
 
-	.landing-scrap {
+	.landing-hero__copy {
+		max-width: 38rem;
+	}
+
+	.landing-title {
+		margin: 0 0 1rem;
+		font-family: var(--font-display), var(--font-serif), var(--font-emoji);
+		font-size: clamp(3.25rem, 11vw, 6.5rem);
+		font-weight: 700;
+		line-height: 0.92;
+		letter-spacing: -0.045em;
+		opacity: 0;
+		animation: page-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+	}
+
+	.landing-title__first {
+		display: block;
+		color: var(--ink);
+	}
+
+	.landing-title__last {
+		display: block;
+		background: linear-gradient(118deg, var(--accent) 8%, var(--accent-bright) 42%, var(--coral) 92%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.landing-blurb {
 		margin: 0;
-		grid-column: span 12;
-		transform: rotate(var(--rot, 0deg));
-		transition:
-			transform 0.2s ease,
-			box-shadow 0.2s ease;
+		max-width: 36ch;
+		font-family: var(--font-serif), var(--font-emoji);
+		font-size: clamp(1.05rem, 2vw, 1.2rem);
+		line-height: 1.55;
+		color: var(--ink-muted);
+		opacity: 0;
+		animation: page-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
 	}
 
-	.landing-scrap:hover {
-		transform: rotate(var(--rot, 0deg)) translateY(-3px);
+	.landing-hero__photo {
+		margin: 0;
+		width: fit-content;
+		max-width: 100%;
+		margin-inline: auto;
+		opacity: 0;
+		animation: landing-photo-in 1s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
 	}
 
-	.landing-rot--welcome {
-		--rot: -1.2deg;
-	}
-
-	.landing-rot--0 {
-		--rot: -2deg;
-	}
-
-	.landing-rot--1 {
-		--rot: 1.5deg;
-	}
-
-	.landing-rot--2 {
-		--rot: -1.2deg;
-	}
-
-	.landing-rot--3 {
-		--rot: 0.8deg;
-	}
-
-	.landing-rot--4 {
-		--rot: 2deg;
-	}
-
-	.landing-rot--5 {
-		--rot: -0.7deg;
-	}
-
-	.landing-rot--6 {
-		--rot: 1.1deg;
-	}
-
-	.landing-scrap--welcome {
-		grid-column: span 12;
-	}
-
-	@media (min-width: 640px) {
-		.landing-scrap--narrow {
-			grid-column: span 5;
-		}
-
-		.landing-scrap--medium {
-			grid-column: span 7;
-		}
-
-		.landing-scrap--wide,
-		.landing-scrap--welcome {
-			grid-column: span 12;
-		}
-	}
-
-	@media (min-width: 960px) {
-		.landing-scrap--narrow {
-			grid-column: span 4;
-		}
-
-		.landing-scrap--medium {
-			grid-column: span 5;
-		}
-
-		.landing-scrap--wide {
-			grid-column: span 8;
-		}
-
-		.landing-scrap--welcome {
-			grid-column: span 8;
-		}
-	}
-
-	.landing-frame {
-		border-radius: var(--radius-md);
+	.landing-photo-frame {
+		border-radius: var(--radius-lg);
 		overflow: hidden;
-		border: 1px solid rgba(28, 27, 25, 0.08);
-		box-shadow: var(--shadow);
-		background: rgba(255, 253, 248, 0.9);
+		border: 1px solid rgba(28, 27, 25, 0.1);
+		box-shadow:
+			0 4px 0 rgba(23, 21, 18, 0.04),
+			var(--shadow);
+		background: rgba(255, 253, 248, 0.95);
 	}
 
-	.landing-frame img {
+	.landing-photo-frame img {
 		width: 100%;
-		aspect-ratio: 5 / 4;
+		aspect-ratio: 4 / 3;
 		object-fit: cover;
 	}
 
-	.landing-frame--welcome img {
-		aspect-ratio: 16 / 10;
+	@keyframes landing-photo-in {
+		from {
+			opacity: 0;
+			transform: translateY(20px) scale(0.98);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
 	}
 
-	.landing-scrap figcaption {
-		margin-top: 0.6rem;
-		font-family: var(--font-serif);
-		font-size: 1.02rem;
-		color: var(--ink-muted);
-		max-width: 42ch;
-		line-height: 1.45;
+	@media (min-width: 768px) {
+		.landing-hero {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+			gap: 2.5rem 3rem;
+		}
+
+		.landing-hero__copy {
+			padding-right: 0.5rem;
+		}
+
+		.landing-hero__photo {
+			margin-inline: 0 0 auto;
+		}
+
+		.landing-photo-frame img {
+			aspect-ratio: 5 / 4;
+		}
 	}
 
-	.landing-scrap--welcome figcaption {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		max-width: 54ch;
-		font-size: 1.08rem;
-	}
-
-	.landing-scrap--welcome figcaption strong {
-		font-family: var(--font-serif);
-		font-size: clamp(1.55rem, 3vw, 2.35rem);
-		font-weight: 600;
-		line-height: 1.05;
-		letter-spacing: -0.04em;
-		color: var(--ink);
-	}
-
-	.landing-note {
-		display: block;
-		padding: 1rem 1.05rem;
-		border-radius: var(--radius-md);
-		border: 1px solid rgba(28, 27, 25, 0.08);
-		box-shadow: var(--shadow);
-		background: rgba(255, 253, 248, 0.9);
-		text-decoration: none;
-	}
-
-	.landing-note p {
-		margin: 0;
-		font-family: var(--font-serif);
-		font-size: 1.02rem;
-		color: var(--ink-muted);
-		line-height: 1.45;
-	}
-
-	.landing-note--link span {
-		display: block;
-		margin-bottom: 0.35rem;
-		font-family: var(--font-sans);
-		font-size: 0.68rem;
-		font-weight: 800;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--accent);
-	}
-
-	.landing-note--link strong {
-		display: block;
-		font-family: var(--font-serif);
-		font-size: 1.45rem;
-		font-weight: 600;
-		line-height: 1.05;
-		letter-spacing: -0.04em;
-		color: var(--ink);
-	}
-
-	.landing-note--link p {
-		margin-top: 0.55rem;
+	@media (min-width: 1024px) {
+		.landing-hero {
+			min-height: calc(100vh - 12rem);
+			grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.landing-scrap,
-		.landing-scrap:hover {
-			transform: none;
-			transition: none;
+		.landing-title,
+		.landing-blurb,
+		.landing-hero__photo {
+			animation: none;
+			opacity: 1;
 		}
 	}
 </style>

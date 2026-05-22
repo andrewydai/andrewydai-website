@@ -1,0 +1,70 @@
+---
+import '../styles/site-stage.css';
+---
+
+<div class="site-stage" data-site-stage>
+	<div class="site-backdrop" aria-hidden="true">
+		<div class="site-backdrop__mesh"></div>
+		<span class="site-backdrop__orb site-backdrop__orb--1"></span>
+		<span class="site-backdrop__orb site-backdrop__orb--2"></span>
+		<span class="site-backdrop__orb site-backdrop__orb--3"></span>
+		<div class="site-backdrop__ring"></div>
+	</div>
+
+	<div class="site-stage__content">
+		<slot />
+	</div>
+</div>
+
+<script>
+	function initSiteStage() {
+		const stage = document.querySelector<HTMLElement>('[data-site-stage]');
+		if (!stage) return;
+
+		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		let px = 0;
+		let py = 0;
+		let tx = 0;
+		let ty = 0;
+		let raf: number | null = null;
+
+		function apply() {
+			raf = null;
+			tx += (px - tx) * 0.08;
+			ty += (py - ty) * 0.08;
+			stage.style.setProperty('--stage-x', tx.toFixed(4));
+			stage.style.setProperty('--stage-y', ty.toFixed(4));
+			if (Math.abs(px - tx) > 0.002 || Math.abs(py - ty) > 0.002) {
+				raf = requestAnimationFrame(apply);
+			}
+		}
+
+		function schedule() {
+			if (raf == null) raf = requestAnimationFrame(apply);
+		}
+
+		function onMove(e: PointerEvent) {
+			const w = window.innerWidth || 1;
+			const h = window.innerHeight || 1;
+			px = (e.clientX / w - 0.5) * 2;
+			py = (e.clientY / h - 0.5) * 2;
+			schedule();
+		}
+
+		function onLeave() {
+			px = 0;
+			py = 0;
+			schedule();
+		}
+
+		if (!reduced) {
+			window.addEventListener('pointermove', onMove, { passive: true });
+			stage.addEventListener('pointerleave', onLeave);
+		}
+
+	}
+
+	initSiteStage();
+	document.addEventListener('astro:page-load', initSiteStage);
+</script>

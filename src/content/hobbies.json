@@ -1,34 +1,66 @@
 {
   "title": "Hobbies",
-  "intro": "Looser than the other sections — small scraps, photos, and short notes.",
+  "intro": "Photos from off the keyboard — music, food, trails, and whatever else fills the weekends.",
+  "youtubeChannel": "https://www.youtube.com/@AndrewYushengDai",
   "items": [
     {
-      "id": "hobby-film",
-      "blurb": "Weekend rewatches of quiet sci-fi. Currently taking notes on sound design.",
-      "image": { "src": "/images/placeholder.svg", "alt": "Film still placeholder" },
-      "rotation": -2,
+      "id": "hobby-piano",
+      "blurb": "Piano when I need to unplug — sometimes recorded for the channel.",
+      "image": { "src": "/images/piano.jpg", "alt": "Andrew playing an upright piano" },
+      "href": "https://www.youtube.com/@AndrewYushengDai",
+      "linkLabel": "YouTube",
+      "rotation": -1.2,
       "span": "medium"
     },
     {
-      "id": "hobby-hike",
-      "blurb": "Local trails when the weather cooperates — nothing heroic, just mileage and trees.",
-      "image": { "src": "/images/placeholder.svg", "alt": "Trail photo placeholder" },
-      "rotation": 1.5,
-      "span": "narrow"
+      "id": "hobby-cooking",
+      "blurb": "Homemade pizza nights and other kitchen experiments.",
+      "image": { "src": "/images/cooking.jpg", "alt": "Andrew with a freshly baked pizza" },
+      "href": "https://www.youtube.com/@AndrewYushengDai",
+      "linkLabel": "YouTube",
+      "rotation": 1.4,
+      "span": "medium"
     },
     {
-      "id": "hobby-music",
-      "blurb": "Playlists for deep work vs. cooking — the kitchen gets the upbeat stuff.",
-      "image": { "src": "/images/placeholder.svg", "alt": "Vinyl or speakers placeholder" },
-      "rotation": 0.8,
+      "id": "hobby-outdoors",
+      "blurb": "Hikes and high places when the weather and schedule align.",
+      "image": { "src": "/images/outdoors.jpg", "alt": "Andrew on a mountain summit above the clouds" },
+      "href": "https://www.youtube.com/@AndrewYushengDai",
+      "linkLabel": "YouTube",
+      "rotation": -1.6,
       "span": "wide"
     },
     {
-      "id": "hobby-reading",
-      "blurb": "Essays on infrastructure and craft; fiction when my brain needs a reset.",
-      "image": { "src": "/images/placeholder.svg", "alt": "Book stack placeholder" },
-      "rotation": -1.2,
+      "id": "hobby-travel",
+      "blurb": "Travel days — gardens, new cities, and whatever is in bloom.",
+      "image": { "src": "/images/travel.jpg", "alt": "Andrew in a flower garden with sunflowers" },
+      "href": "https://www.youtube.com/@AndrewYushengDai",
+      "linkLabel": "YouTube",
+      "rotation": 0.9,
+      "span": "narrow"
+    },
+    {
+      "id": "hobby-tennis",
+      "blurb": "Tennis with friends — more rallying than ranking.",
+      "image": { "src": "/images/tennis.jpg", "alt": "Andrew and a friend on a tennis court" },
+      "href": "https://www.youtube.com/@AndrewYushengDai",
+      "linkLabel": "YouTube",
+      "rotation": -0.7,
       "span": "medium"
+    },
+    {
+      "id": "hobby-board-games",
+      "blurb": "Chess, Blokus, and whatever else ends up on the coffee table.",
+      "image": { "src": "/images/board_game.jpg", "alt": "Friends playing chess and Blokus" },
+      "rotation": 1.1,
+      "span": "wide"
+    },
+    {
+      "id": "hobby-cat",
+      "blurb": "Gnocchi — chief napper and unsolicited project manager.",
+      "image": { "src": "/images/cat.jpg", "alt": "A tabby cat resting on a bed" },
+      "rotation": -0.9,
+      "span": "narrow"
     }
   ]
 }

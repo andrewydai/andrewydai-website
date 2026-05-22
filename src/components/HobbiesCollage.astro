@@ -13,11 +13,35 @@ const { items } = Astro.props;
 		items.map((item) => {
 			const rot = item.rotation ?? 0;
 			const span = item.span ?? 'medium';
+			const linkLabel = item.linkLabel ?? 'YouTube';
+
 			return (
-				<figure class:list={['hobby-scrap', `hobby-scrap--${span}`]} style={`--rot:${rot}deg`}>
-					<div class="hobby-frame">
-						<img src={item.image.src} alt={item.image.alt} loading="lazy" width="800" height="600" />
-					</div>
+				<figure
+					class:list={['hobby-scrap', `hobby-scrap--${span}`, { 'hobby-scrap--link': item.href }]}
+					style={`--rot:${rot}deg`}
+				>
+					{
+						item.href ? (
+							<a
+								class="hobby-scrap__media"
+								href={item.href}
+								target="_blank"
+								rel="noreferrer noopener"
+								aria-label={`${item.blurb} — ${linkLabel}`}
+							>
+								<div class="hobby-frame">
+									<img src={item.image.src} alt={item.image.alt} loading="lazy" width="800" height="600" />
+								</div>
+								<span class="hobby-scrap__badge">{linkLabel}</span>
+							</a>
+						) : (
+							<div class="hobby-scrap__media">
+								<div class="hobby-frame">
+									<img src={item.image.src} alt={item.image.alt} loading="lazy" width="800" height="600" />
+								</div>
+							</div>
+						)
+					}
 					<figcaption>{item.blurb}</figcaption>
 				</figure>
 			);
@@ -44,6 +68,56 @@ const { items } = Astro.props;
 
 	.hobby-scrap:hover {
 		transform: rotate(var(--rot, 0deg)) translateY(-3px);
+	}
+
+	.hobby-scrap__media {
+		display: block;
+		position: relative;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.hobby-scrap--link .hobby-scrap__media {
+		cursor: pointer;
+	}
+
+	.hobby-scrap--link .hobby-scrap__media:hover .hobby-frame,
+	.hobby-scrap--link .hobby-scrap__media:focus-visible .hobby-frame {
+		border-color: var(--accent-border);
+		box-shadow: var(--shadow-hover);
+	}
+
+	.hobby-scrap--link .hobby-scrap__media:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 4px;
+		border-radius: var(--radius-md);
+	}
+
+	.hobby-scrap__badge {
+		position: absolute;
+		right: 0.55rem;
+		bottom: 0.55rem;
+		padding: 0.22rem 0.5rem;
+		border-radius: 999px;
+		background: rgba(23, 21, 18, 0.82);
+		color: #fff;
+		font-family: var(--font-sans);
+		font-size: 0.62rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		opacity: 0;
+		transform: translateY(4px);
+		transition:
+			opacity 0.2s ease,
+			transform 0.2s ease;
+		pointer-events: none;
+	}
+
+	.hobby-scrap--link .hobby-scrap__media:hover .hobby-scrap__badge,
+	.hobby-scrap--link .hobby-scrap__media:focus-visible .hobby-scrap__badge {
+		opacity: 1;
+		transform: translateY(0);
 	}
 
 	@media (min-width: 640px) {
@@ -80,17 +154,21 @@ const { items } = Astro.props;
 		border: 1px solid rgba(28, 27, 25, 0.08);
 		box-shadow: var(--shadow);
 		background: rgba(255, 253, 248, 0.9);
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
 	}
 
 	.hobby-frame img {
 		width: 100%;
 		aspect-ratio: 5 / 4;
 		object-fit: cover;
+		display: block;
 	}
 
 	.hobby-scrap figcaption {
 		margin-top: 0.6rem;
-		font-family: var(--font-serif);
+		font-family: var(--font-serif), var(--font-emoji);
 		font-size: 1.02rem;
 		color: var(--ink-muted);
 		max-width: 36ch;

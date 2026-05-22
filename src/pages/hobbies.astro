@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteStage from '../components/SiteStage.astro';
+import PageHeader from '../components/PageHeader.astro';
 import HobbiesCollage from '../components/HobbiesCollage.astro';
 import hobbies from '../content/hobbies.json';
 import type { HobbyItem } from '../types/content';
@@ -8,11 +10,10 @@ const items = hobbies.items as HobbyItem[];
 ---
 
 <Layout title={hobbies.title} description={hobbies.intro} currentPath="/hobbies">
-	<main class="page-shell">
-		<header class="page-head">
-			<h1>{hobbies.title}</h1>
-			<p>{hobbies.intro}</p>
-		</header>
-		<HobbiesCollage items={items} />
-	</main>
+	<SiteStage>
+		<main class="page-shell">
+			<PageHeader title={hobbies.title} intro={hobbies.intro} />
+			<HobbiesCollage items={items} />
+		</main>
+	</SiteStage>
 </Layout>

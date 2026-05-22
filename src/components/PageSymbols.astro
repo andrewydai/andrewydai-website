@@ -1,0 +1,61 @@
+---
+import { exploreLinks } from '../data/exploreLinks';
+import ExploreSymbolIcon from './ExploreSymbolIcon.astro';
+
+interface Props {
+	currentPath: string;
+	layout?: 'row' | 'column';
+	showTooltips?: boolean;
+}
+
+const { currentPath, layout = 'row', showTooltips = false } = Astro.props;
+
+const isActive = (href: string) =>
+	href === '/' ? currentPath === '/' : currentPath === href || currentPath.startsWith(`${href}/`);
+---
+
+<nav class:list={['page-symbols', { 'page-symbols--column': layout === 'column' }]} aria-label="Explore the site">
+	{
+		exploreLinks.map((link) => (
+			<a
+				class:list={['page-symbol', { 'page-symbol--active': isActive(link.href) }]}
+				href={link.href}
+				data-nav-href={link.href}
+				aria-label={link.label}
+				aria-current={isActive(link.href) ? 'page' : undefined}
+				data-tooltip={showTooltips ? link.label : undefined}
+				data-page-symbol
+			>
+				<ExploreSymbolIcon symbol={link.symbol} />
+			</a>
+		))
+	}
+	</nav>
+
+<script>
+	function initPageSymbols() {
+		const symbols = document.querySelectorAll<HTMLElement>('[data-page-symbol]');
+		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		symbols.forEach((symbol) => {
+			if (symbol.dataset.symbolBound === 'true') return;
+			symbol.dataset.symbolBound = 'true';
+
+			symbol.addEventListener('pointermove', (e) => {
+				if (reduced) return;
+				const rect = symbol.getBoundingClientRect();
+				const x = ((e.clientX - rect.left) / rect.width - 0.5) * 8;
+				const y = ((e.clientY - rect.top) / rect.height - 0.5) * 6;
+				symbol.style.setProperty('--symbol-x', `${x.toFixed(2)}px`);
+				symbol.style.setProperty('--symbol-y', `${y.toFixed(2)}px`);
+			});
+			symbol.addEventListener('pointerleave', () => {
+				symbol.style.setProperty('--symbol-x', '0px');
+				symbol.style.setProperty('--symbol-y', '0px');
+			});
+		});
+	}
+
+	initPageSymbols();
+	document.addEventListener('astro:page-load', initPageSymbols);
+</script>

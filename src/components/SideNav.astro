@@ -1,0 +1,261 @@
+---
+import site from '../content/site.json';
+import PageSymbols from './PageSymbols.astro';
+import SocialSymbolIcon from './SocialSymbolIcon.astro';
+
+interface Props {
+	currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const { social } = site;
+---
+
+<nav class="side-nav" aria-label="Site" data-side-nav>
+	<div class="side-nav__inner">
+		<div class="side-nav__section side-nav__section--site">
+			<a
+				class:list={['page-symbol', { 'page-symbol--active': currentPath === '/' }]}
+				href="/"
+				data-nav-href="/"
+				data-page-symbol
+				data-tooltip="Home"
+				aria-label="Home"
+				aria-current={currentPath === '/' ? 'page' : undefined}
+			>
+				<svg class="page-symbol__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+					<path d="m3 10 9-7 9 7" />
+					<path d="M5 10v10h14V10" />
+				</svg>
+			</a>
+
+			<PageSymbols currentPath={currentPath} layout="column" showTooltips />
+		</div>
+
+		<div class="side-nav__divider" role="presentation"></div>
+
+		<div class="side-nav__section side-nav__section--social">
+			<a
+				class="page-symbol"
+				href={social.github}
+				data-nav-external
+				data-tooltip="GitHub"
+				aria-label="GitHub"
+				target="_blank"
+				rel="noreferrer noopener"
+			>
+				<SocialSymbolIcon symbol="github" />
+			</a>
+			<a
+				class="page-symbol"
+				href={social.linkedin}
+				data-nav-external
+				data-tooltip="LinkedIn"
+				aria-label="LinkedIn"
+				target="_blank"
+				rel="noreferrer noopener"
+			>
+				<SocialSymbolIcon symbol="linkedin" />
+			</a>
+			<a
+				class="page-symbol"
+				href={`mailto:${social.email}`}
+				data-nav-external
+				data-tooltip={social.email}
+				aria-label={`Email ${social.email}`}
+			>
+				<SocialSymbolIcon symbol="email" />
+			</a>
+		</div>
+
+		<div class="side-nav__divider" role="presentation"></div>
+
+		<div class="side-nav__section side-nav__section--resume">
+			<a
+				class="page-symbol"
+				href={social.resumeUrl}
+				data-nav-external
+				data-tooltip="Resume"
+				aria-label="Resume"
+				download
+			>
+				<SocialSymbolIcon symbol="resume" />
+			</a>
+		</div>
+	</div>
+</nav>
+
+<script>
+	function normalizePath(pathname: string) {
+		if (!pathname || pathname === '/') return '/';
+		return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+	}
+
+	function isActive(path: string, href: string) {
+		return href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`);
+	}
+
+	function updateSideNavActive() {
+		const nav = document.querySelector<HTMLElement>('[data-side-nav]');
+		if (!nav) return;
+
+		const path = normalizePath(window.location.pathname);
+
+		nav.querySelectorAll<HTMLElement>('[data-page-symbol], [data-nav-href]').forEach((link) => {
+			const href = link.dataset.navHref ?? link.getAttribute('href');
+			if (!href || href.startsWith('http') || href.endsWith('.pdf')) return;
+			const active = isActive(path, href);
+			link.classList.toggle('page-symbol--active', active);
+			link.setAttribute('aria-current', active ? 'page' : 'false');
+		});
+	}
+
+	function initSideNav() {
+		const nav = document.querySelector<HTMLElement>('[data-side-nav]');
+		if (!nav) return;
+
+		updateSideNavActive();
+
+		nav.querySelectorAll<HTMLAnchorElement>('a[href^="/"]').forEach((link) => {
+			if (link.dataset.navClickBound === 'true') return;
+			link.dataset.navClickBound = 'true';
+			link.addEventListener('click', () => {
+				window.setTimeout(() => {
+					if (document.activeElement === link) link.blur();
+				}, 0);
+			});
+		});
+	}
+
+	initSideNav();
+	document.addEventListener('astro:page-load', () => {
+		initSideNav();
+	});
+</script>
+
+<style>
+	.side-nav {
+		position: fixed;
+		left: var(--side-nav-gap);
+		top: 50%;
+		z-index: 50;
+		transform: translateY(-50%);
+		opacity: 0.72;
+		transition: opacity 0.2s ease;
+	}
+
+	.side-nav:hover {
+		opacity: 0.94;
+	}
+
+	.side-nav__inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.9rem 0.55rem;
+		background: rgba(255, 253, 248, 0.58);
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(28, 27, 25, 0.07);
+		border-radius: var(--radius-lg);
+		box-shadow: 0 6px 20px rgba(23, 21, 18, 0.06);
+	}
+
+	.side-nav__section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.55rem;
+	}
+
+	.side-nav__divider {
+		flex-shrink: 0;
+		width: 2.25rem;
+		height: 2px;
+		border-radius: 1px;
+		background: rgba(28, 27, 25, 0.24);
+	}
+
+	.side-nav :global(.page-symbol) {
+		position: relative;
+		border-color: rgba(28, 27, 25, 0.12);
+		color: rgba(74, 70, 64, 0.78);
+		background: rgba(255, 253, 248, 0.28);
+	}
+
+	.side-nav :global(.page-symbol:hover),
+	.side-nav :global(.page-symbol:focus-visible),
+	.side-nav :global(.page-symbol--active) {
+		color: var(--accent);
+		border-color: rgba(31, 107, 86, 0.24);
+		background: rgba(31, 107, 86, 0.08);
+	}
+
+	.side-nav :global(.page-symbol[data-tooltip]::after) {
+		content: attr(data-tooltip);
+		position: absolute;
+		left: calc(100% + 0.6rem);
+		top: 50%;
+		transform: translateY(-50%);
+		padding: 0.3rem 0.55rem;
+		border-radius: 6px;
+		background: rgba(23, 21, 18, 0.92);
+		color: #fff;
+		font-family: var(--font-sans);
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		white-space: nowrap;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.15s ease, transform 0.15s ease;
+		z-index: 60;
+	}
+
+	.side-nav :global(.page-symbol[data-tooltip]:hover::after),
+	.side-nav :global(.page-symbol[data-tooltip]:focus-visible::after) {
+		opacity: 1;
+		transform: translateY(-50%) translateX(2px);
+	}
+
+	@media (max-width: 720px) {
+		.side-nav {
+			top: auto;
+			bottom: 1rem;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.side-nav__inner {
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			padding: 0.65rem 0.75rem;
+			max-width: calc(100vw - 2rem);
+			gap: 0.55rem;
+		}
+
+		.side-nav__section {
+			flex-direction: row;
+			gap: 0.45rem;
+		}
+
+		.side-nav__divider {
+			width: 2px;
+			height: 2rem;
+		}
+
+		.side-nav :global(.page-symbol[data-tooltip]::after) {
+			left: 50%;
+			top: auto;
+			bottom: calc(100% + 0.45rem);
+			transform: translateX(-50%);
+		}
+
+		.side-nav :global(.page-symbol[data-tooltip]:hover::after),
+		.side-nav :global(.page-symbol[data-tooltip]:focus-visible::after) {
+			transform: translateX(-50%) translateY(-2px);
+		}
+	}
+</style>
