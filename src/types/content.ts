@@ -47,7 +47,12 @@ export interface TileItem {
 	title: string;
 	blurb: string;
 	/** Shown when `organization` + `role` are not both set (e.g. projects / games). */
-	image: { src: string; alt: string; objectFit?: 'cover' | 'contain' };
+	image: {
+		src: string;
+		alt: string;
+		/** Collapsed tile thumbnail: `cover` (crop, default) or `contain` (fit inside canvas). */
+		objectFit?: 'cover' | 'contain';
+	};
 	badges: string[];
 	details: DetailBlock[];
 	organization?: string;
@@ -58,7 +63,12 @@ export interface TileItem {
 export interface HobbyItem {
 	id: string;
 	blurb: string;
-	image: { src: string; alt: string };
+	image: {
+		src: string;
+		alt: string;
+		/** Visual scale of the photo within the card. Default `medium`. */
+		size?: 'small' | 'medium' | 'large';
+	};
 	/** Opens in a new tab when set (e.g. YouTube). */
 	href?: string;
 	linkLabel?: string;

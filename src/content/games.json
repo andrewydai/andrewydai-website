@@ -1,13 +1,16 @@
 {
   "title": "Games",
-  "intro": "Game jams, prototypes, and playful systems — same tile pattern as Work and Projects.",
+  "intro": "Hobby game projects that I work on in my free time!",
   "items": [
     {
       "id": "territory-conquest",
       "title": "Territory Conquest",
-      "blurb": "Strategy prototype played on a treemap of named territories—expand, count, and contest the board.",
-      "image": { "src": "/images/territory_conquest.gif", "alt": "Territory Conquest — treemap territory selection" },
-      "badges": ["Godot", "Jam", "Pixel art"],
+      "blurb": "A rehash of a classic Roblox game with my own twists.",
+      "image": {
+        "src": "/images/territory_conquest_title.png",
+        "alt": "Territory Conquest"
+      },
+      "badges": ["Godot"],
       "details": [
         {
           "type": "split",
@@ -20,12 +23,20 @@
           "content": [
             {
               "type": "paragraph",
-              "text": "Document your design pillars, what you cut for time, and what you'd revisit. Link to itch.io or a WebGL build when you have one."
+              "text": "Territory Conquest is a Roblox Real-Time Strategy game where the sole mechanic is conquering territories with numerical superiority. Despite this straight forward mechanic, it lent itself to a compelling complexity. Navigating where to reinforce your armies, where to press your oponents, all underpinned by your APM made for a very engaging experience."
+            },
+            {
+              "type": "paragraph",
+              "text": "What I want to iterate on was that player fantasy. I've never played a game that reaches a similar level of engaging a player as if they were managing a macroscopic war - one where the line and your resources are of utmost importance. I have a long history of strategy games, having played countless RTS's and 4X style games and oddly, this dressed down game provides the most compelling fantasy."
+            },
+            {
+              "type": "paragraph",
+              "text": "There are 3 main mechanics I seek to improve on. First, I want to improve the aesthetic to enable a more immersive fantasy. Second, I want to experiment with the timing, to encourage a less constant APM heavy game, and encourage natural cycles of offense and defense. Finally, I want to experiment with adding slgithly more complexity to the primary resource, soldiers. Playing around with resource requirements to produce, differnt types of soldiers, or different types of spaces to encourage magnetic objectives."
             },
             {
               "type": "link",
-              "href": "https://itch.io",
-              "label": "Itch.io page (stand-in)"
+              "href": "https://www.roblox.com/games/52287361/Territory-Conquest-v19-2-3",
+              "label": "Roblox Territory Conquest"
             }
           ]
         }
@@ -34,9 +45,12 @@
     {
       "id": "tetris-romantik",
       "title": "Tetris Romantik",
-      "blurb": "Pixel-art kingdom builder—place land cards on a grid to grow farms, forests, and settlements.",
-      "image": { "src": "/images/tetris_romantik.gif", "alt": "Tetris Romantik — grid placement and card hand" },
-      "badges": ["Unity", "C#", "Design"],
+      "blurb": "Tetris-style iteration of Dorfromantik.",
+      "image": {
+        "src": "/images/tetris_romantik_title.png",
+        "alt": "Tetris Romantik"
+      },
+      "badges": ["Godot", "Pixel Art"],
       "details": [
         {
           "type": "split",
@@ -49,7 +63,136 @@
           "content": [
             {
               "type": "paragraph",
-              "text": "Use badges for engine, role (solo / team), and notable systems (AI, procgen, etc.)."
+              "text": "One of my all-time favorite high-score style puzzle games is Dorfromantik. I wanted to try my hand at a Tetris-style iteration of it. Dorfromantik traditionally is a hexagonal tiling game, where matching certain edges of the Hexagon with like pieces garners a higher score. Finishing quests gives you more cards, and when you run out the game is over."
+            },
+            {
+              "type": "paragraph",
+              "text": "I spent a lot of time creating this project in Godot. Specifically, I had a lot of fun playing with code-based animations using tweens. All of the assets I use are created by me in AseSprite, and I particularly enjoy how the trees sway and the houses blow smoke! It's a great reminder that while graphical fidelity isn't a fundamental requirement, immersion and appreciation for what makes games fun is. Making the trees sway is small but delightful."
+            },
+            {
+              "type": "paragraph",
+              "text": "A fascinating problem I ran into while creating this project is the difference in tiling strategy. Hexagons have a key attribute that makes them appealing; they tile perfectly. Tetris pieces, if they didn't Tetris as a game wouldn't work, and it's why I chose them. However, Dorfromantik ONLY using Hexagons makes the system much easier. I had to painstakling write logic to ohandle non-uniform tiles in Godot's TileMapLayer. On top of that, I had to walk back the mechanic of having the edges of the piece represent types, instead opting to randomly select pieces of the tetris piece to give a suite."
+            },
+            {
+              "type": "link",
+              "href": "https://store.steampowered.com/app/1455840/Dorfromantik/",
+              "label": "Dorfromanik"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scrapling",
+      "title": "Scrapling",
+      "blurb": "Bio-punk platforming game about a robot finding its feet in a decaying world.",
+      "image": {
+        "src": "/images/scrapling_title.png",
+        "alt": "scrapling"
+      },
+      "badges": ["Godot", "Pixel Animations"],
+      "details": [
+        {
+          "type": "split",
+          "mediaPosition": "start",
+          "media": {
+            "src": "/images/scrapling_gameplay.gif",
+            "alt": "scrapling gameplay",
+            "caption": "Dialogue and the main swinging mechanic."
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "text": "Scrapling was a pixel-style platforming game I developed with two friends for the 2025 Shovel Jam. The theme was 'Getting Started', and we were inspired to make a game about a Robot finding its feet in a decaying world. In Scrapling, the player learns to move with just two vine arms, swinging through obstacles, projectiles, and solving puzzles to escape a labrynthian factory."
+            },
+            {
+              "type": "paragraph",
+              "text": "The game was a monumental effort to finish in a week. I worked primarily on level design, creating the layout of both main levels, as well as the mechanics for many of the obstacles and the main tile set. We all worked hard at the code portion, ironing out bugs to the last minute."
+            },
+            {
+              "type": "paragraph",
+              "text": "In the end, we ended up getting an overall rank of 94 out of 1145 entries, which made us very proud. It was a great experience to work with two friends on a game, and I'm proud of the work we put in!"
+            },
+            {
+              "type": "link",
+              "href": "https://itch.io/jam/shovel-jam-2025/rate/3737420",
+              "label": "Scrapling Submission Page"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sosu",
+      "title": "Sosū",
+      "blurb": "Tend to a Bonsai tree while solving simple math problems.",
+      "image": {
+        "src": "/images/sosu_title.png",
+        "alt": "Sosu title screen"
+      },
+      "badges": ["Godot"],
+      "details": [
+        {
+          "type": "split",
+          "mediaPosition": "start",
+          "media": {
+            "src": "/images/sosu_gameplay.gif",
+            "alt": "Sosu gameplay",
+            "caption": "Tree growing mechanic, with randomized branch generation."
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "text": "Sosu was a brief, experimental game I worked on when first learning Godot. I made the decision to switch to Godot as the primary game engine i'd like to learn in because of its open-source, commmunity-oriented environment."
+            },
+            {
+              "type": "paragraph",
+              "text": "Sosu is a puzzle game about solving simple math problems while tending a Bonsai tree. Players use a variety of mathematical operations to prune, clip, and grow the tree until the equation is solved. Ultimately what working on this game taught me though, was that making puzzles is really hard. I have a deep love for puzzle games and have played through more than I can count, and making something that feels light, accessible, but brilliant and clever when solved is a challenge."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Underwashed",
+      "title": "Underwashed",
+      "blurb": "Souls-like platforming and fighting game about cleaning up the world.",
+      "image": {
+        "src": "/images/underwashed_title.png",
+        "alt": "Underwashed title screen"
+      },
+      "badges": ["Unity", "C#"],
+      "details": [
+        {
+          "type": "split",
+          "mediaPosition": "start",
+          "media": {
+            "src": "/images/underwashed_gameplay.gif",
+            "alt": "Underwashed gameplay",
+            "caption": "Level navigation, and boss fight against Plato."
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "text": "Underwashed was the final project for a game development course in university. I worked in a team of 4 to create the game using Unity and C#. A large amount of the assets were created by us in Unity's Mesh Maker. All of the code was written by us as well."
+            },
+            {
+              "type": "paragraph",
+              "text": "While not my first foray into game development, Underwashed was my first time working in a proper game engine in a 3D environment. It was a steep learning curve. Especially making a platforming styled game, the collisions and interactions of all the rigid bodies was not trivial"
+            },
+            {
+              "type": "paragraph",
+              "text": "I primarily worked on the level design and boss fights, creating all of the moves, animations, and state machine logic for Plato and the Rat Lord!"
+            },
+            {
+              "type": "link",
+              "href": "https://andrewdai.itch.io/fp6",
+              "label": "Underwashed itch.io page"
+            },
+            {
+              "type": "link",
+              "href": "https://www.youtube.com/watch?v=atAKfjYDcus",
+              "label": "Gameplay trailer"
             }
           ]
         }

@@ -13,11 +13,17 @@ const { items } = Astro.props;
 		items.map((item) => {
 			const rot = item.rotation ?? 0;
 			const span = item.span ?? 'medium';
+			const imageSize = item.image.size ?? 'medium';
 			const linkLabel = item.linkLabel ?? 'YouTube';
 
 			return (
 				<figure
-					class:list={['hobby-scrap', `hobby-scrap--${span}`, { 'hobby-scrap--link': item.href }]}
+					class:list={[
+						'hobby-scrap',
+						`hobby-scrap--${span}`,
+						`hobby-scrap--img-${imageSize}`,
+						{ 'hobby-scrap--link': item.href },
+					]}
 					style={`--rot:${rot}deg`}
 				>
 					{
@@ -161,9 +167,37 @@ const { items } = Astro.props;
 
 	.hobby-frame img {
 		width: 100%;
-		aspect-ratio: 5 / 4;
 		object-fit: cover;
 		display: block;
+	}
+
+	.hobby-scrap--img-small .hobby-frame img {
+		aspect-ratio: 4 / 3;
+		max-height: 11.5rem;
+	}
+
+	.hobby-scrap--img-medium .hobby-frame img {
+		aspect-ratio: 5 / 4;
+		max-height: 15rem;
+	}
+
+	.hobby-scrap--img-large .hobby-frame img {
+		aspect-ratio: 16 / 10;
+		max-height: 20rem;
+	}
+
+	@media (min-width: 640px) {
+		.hobby-scrap--img-small .hobby-frame img {
+			max-height: 13rem;
+		}
+
+		.hobby-scrap--img-medium .hobby-frame img {
+			max-height: 17rem;
+		}
+
+		.hobby-scrap--img-large .hobby-frame img {
+			max-height: 24rem;
+		}
 	}
 
 	.hobby-scrap figcaption {
