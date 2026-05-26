@@ -9,12 +9,16 @@
       "role": "Software Engineer",
       "tenure": { "start": "2026-05" },
       "blurb": "Building powerful AI-enabled tools to empower the sustainability space.",
-      "image": { "src": "/images/arcadia_logo.jpeg", "alt": "Arcadia logo", "objectFit": "contain" },
+      "image": { "src": "/images/work/arcadia_logo.jpeg", "alt": "Arcadia logo", "objectFit": "contain" },
       "badges": ["TypeScript", "React", "Python", "Azure", "AWS", "Claude"],
       "details": [
         {
           "type": "paragraph",
           "text": "At Arcadia, I worked on transitioning our project to new owners during the merger of Engie Impact and Arcadia. I helped to migrate our project from AWS to Azure, rebrand our UI/UX, and create powerful new AI tools to modernize our existing software."
+        },
+        {
+          "type": "paragraph",
+          "text": "One of my most recent projects was creating a knowledge based MCP server for my local Claude instance to use. I used a local Ollama embedding model to index and search across 70 transcripts, KT files, and Slide decks to enrich my learning of our new products and brands. It was a very informative dive that helped strengthen my understanding of AI tooling, context management and RAG styled augmentation."
         },
         {
           "type": "link",
@@ -30,7 +34,7 @@
       "role": "Software Engineer",
       "tenure": { "start": "2023-10", "end": "2026-05" },
       "blurb": "Developed high-power data pipelines and solutions for Carbon and Energy markets.",
-      "image": { "src": "/images/engie_impact_logo.jpeg", "alt": "ENGIE Impact logo", "objectFit": "contain" },
+      "image": { "src": "/images/work/engie_impact_logo.jpeg", "alt": "ENGIE Impact logo", "objectFit": "contain" },
       "badges": ["TypeScript", "React", "Python", "AWS", "Copilot"],
       "details": [
         {
@@ -67,7 +71,7 @@
       "role": "Software Engineer",
       "tenure": { "start": "2022-09", "end": "2023-06" },
       "blurb": "Created powerful software for AI-powered clinical trial pathology.",
-      "image": { "src": "/images/pathai_logo.png", "alt": "PathAI logo", "objectFit": "contain" },
+      "image": { "src": "/images/work/pathai_logo.png", "alt": "PathAI logo", "objectFit": "contain" },
       "badges": ["TypeScript", "Vue.js", "Python", "Django", "AWS"],
       "details": [
         {
@@ -100,7 +104,7 @@
       "role": "Software Engineer Co-op",
       "tenure": { "start": "2021-01", "end": "2021-06" },
       "blurb": "Built maintenance coordination tools that helped property teams communicate faster.",
-      "image": { "src": "/images/appfolio_logo.png", "alt": "AppFolio logo", "objectFit": "contain" },
+      "image": { "src": "/images/work/appfolio_logo.png", "alt": "AppFolio logo", "objectFit": "contain" },
       "badges": ["TypeScript", "React", "GraphQL", "Ruby on Rails", "MySQL"],
       "details": [
         {
@@ -133,7 +137,7 @@
       "role": "Software Engineer Co-op",
       "tenure": { "start": "2020-01", "end": "2020-07" },
       "blurb": "Modernized supplier discovery and data workflows for energy procurement teams.",
-      "image": { "src": "/images/poweradvocate_logo.jpeg", "alt": "PowerAdvocate logo", "objectFit": "contain" },
+      "image": { "src": "/images/work/poweradvocate_logo.jpeg", "alt": "PowerAdvocate logo", "objectFit": "contain" },
       "badges": ["JavaScript", "Java", "React", "ElasticSearch", "Oracle DB", "AWS"],
       "details": [
         {
@@ -166,7 +170,7 @@
       "role": "Research Assistant",
       "tenure": { "start": "2019-01", "end": "2019-07" },
       "blurb": "Built research tooling for bounded exploration of program and system states.",
-      "image": { "src": "/images/northeastern_logo.png", "alt": "Northeastern logo", "objectFit": "contain" },
+      "image": { "src": "/images/work/northeastern_logo.png", "alt": "Northeastern logo", "objectFit": "contain" },
       "badges": ["Java", "Racket", "Research"],
       "details": [
         {

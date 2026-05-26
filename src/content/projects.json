@@ -1,40 +1,71 @@
 {
   "title": "Projects",
-  "intro": "Side projects and experiments — each tile collapses to a glance; open it for write-ups, diagrams, or repo links.",
+  "intro": "Side projects that I've worked on outside of professional work!",
   "items": [
     {
-      "id": "standin-cli-tool",
-      "title": "CLI productivity tool (stand-in)",
-      "blurb": "A small command-line helper that wraps common git workflows for your team.",
-      "image": { "src": "/images/placeholder.svg", "alt": "Terminal mock placeholder" },
+      "id": "hall-of-heroes",
+      "title": "Hall of Heroes",
+      "blurb": "Making record-keeping of all my table top games easier and prettier.",
+      "image": { "src": "/images/site/placeholder.svg", "alt": "placeholder" },
       "badges": ["Rust", "CLI", "Git"],
       "details": [
         {
           "type": "paragraph",
-          "text": "Describe the problem, your approach, and tradeoffs. This section is meant for richer narrative than the blurb above."
+          "text": "Blank for now!"
         },
         {
           "type": "link",
           "href": "https://github.com",
-          "label": "GitHub repository (stand-in)"
+          "label": ""
         }
       ]
     },
     {
-      "id": "standin-dashboard",
-      "title": "Personal analytics dashboard (stand-in)",
-      "blurb": "Charts local habits and goals without sending data to the cloud.",
-      "image": { "src": "/images/placeholder.svg", "alt": "Dashboard placeholder" },
-      "badges": ["Astro", "SQLite", "Charts"],
+      "id": "personal-website",
+      "title": "Personal Website",
+      "blurb": "What you're looking at right now!",
+      "image": { "src": "/favicon.svg", "alt": "favicon" },
+      "badges": ["Astro", "React", "AI"],
       "details": [
         {
           "type": "paragraph",
-          "text": "Add screenshots, architecture notes, or a GIF of the UI in action using the image block type in projects.json."
+          "text": "I built this website to showcase my projects and experiences, and to give myself some visibility. I used Astro and React to build the website. I primarily used Cursor as an AI tool to stand up the website before I iterated on the design. A lot of the purpose was to continue learning more AI tooling methodologies while updating my personal site!"
+        }
+      ]
+    },
+    {
+      "id": "search-neu",
+      "title": "Search NEU",
+      "blurb": "Student-built search engine for Northeastern University classes.",
+      "image": { "src": "/images/projects/searchneu_logo.png", "alt": "Dashboard placeholder" },
+      "badges": ["TypeScript", "React", "Elasticsearch"],
+      "details": [
+        {
+          "type": "paragraph",
+          "text": "Search NEU is a student-built search engine for Northeastern University classes. Search NEU helps students better navigate classes with a significantly more accessible UI/UX over the old Banner system. It has an automated scrape process for thousands of clasess, supports undergraduate and gradute courses, and has a text-based notification system for class openings. It's a long lived project, with close to 8 years of development and maintenance by students. In my Seinor year I was the project lead, organizing Agile workflows and leading technical development of Class Pages."
         },
         {
-          "type": "image",
-          "src": "/images/placeholder.svg",
-          "alt": "UI screenshot placeholder"
+          "type": "link",
+          "href": "https://searchneu.com/",
+          "label": "Search NEU Website"
+        }
+      ]
+    },
+    {
+      "id": "firstbyte",
+      "title": "FirstByte",
+      "blurb": "Student led STEM education program for primary school students.",
+      "image": { "src": "/images/projects/firstbyte_logo.png", "alt": "Dashboard placeholder" },
+      "badges": ["STEM education", "Scratch"],
+      "details": [
+        {
+          "type": "paragraph",
+          "text": "While not technical, I'm proud of my time as the project leader of FirstByte's curriculum team, which created a variety of STEM curriculums for primary school students. Specifically, I worked on creating scratch curriculums for students to learn about programming and basic computer science concepts, interfacing with hardware for engaging interactability!"
+        },
+        {
+          "type": "link",
+          "href": "https://www.teachfirstbyte.com/",
+          "label": "FirstByte Website"
         }
       ]
     }

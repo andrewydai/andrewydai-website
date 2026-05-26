@@ -6,7 +6,7 @@
     {
       "id": "hobby-piano",
       "blurb": "I've been trying to learn piano! I played briefly as a kid, but basically started from nothing. I like very peaceful, uncomplicated piano, like Satie, Austin Farwell, Idealism, etc.",
-      "image": { "src": "/images/piano.jpg", "alt": "Andrew playing an upright piano" },
+      "image": { "src": "/images/hobbies/piano.jpg", "alt": "Andrew playing an upright piano" },
       "href": "https://www.youtube.com/@AndrewYushengDai",
       "linkLabel": "YouTube",
       "rotation": -1.2,
@@ -15,7 +15,7 @@
     {
       "id": "hobby-cooking",
       "blurb": "I have a dream to one day own an Ooni or a Gozney 😭. Vegetarian so this is a tofu buffalo chicken!",
-      "image": { "src": "/images/cooking.jpg", "alt": "Andrew with a freshly baked pizza" },
+      "image": { "src": "/images/hobbies/cooking.jpg", "alt": "Andrew with a freshly baked pizza" },
       "href": "https://www.youtube.com/@AndrewYushengDai",
       "linkLabel": "YouTube",
       "rotation": 1.4,
@@ -25,7 +25,7 @@
       "id": "hobby-outdoors",
       "blurb": "My accidental rendition of Wanderer Above the Sea of Fog, I love views :).",
       "image": {
-        "src": "/images/outdoors.jpg",
+        "src": "/images/hobbies/outdoors.jpg",
         "alt": "Andrew on a mountain summit above the clouds",
         "size": "large"
       },
@@ -38,7 +38,7 @@
       "id": "hobby-travel",
       "blurb": "I love the feeling of not knowing where I am when traveling. With that in mind, this is Monet's Water Lily Pond 😅.",
       "image": {
-        "src": "/images/travel.jpg",
+        "src": "/images/hobbies/travel.jpg",
         "alt": "Andrew in a flower garden with sunflowers",
         "size": "small"
       },
@@ -50,7 +50,7 @@
     {
       "id": "hobby-tennis",
       "blurb": "Nothing beats the rhythm of a good rally on a hot summer day.",
-      "image": { "src": "/images/tennis.jpg", "alt": "Andrew and a friend on a tennis court" },
+      "image": { "src": "/images/hobbies/tennis.jpg", "alt": "Andrew and a friend on a tennis court" },
       "href": "https://www.youtube.com/@AndrewYushengDai",
       "linkLabel": "YouTube",
       "rotation": -0.7,
@@ -59,14 +59,14 @@
     {
       "id": "hobby-board-games",
       "blurb": "Blokus is all we had at home, but if I had to give out some recommendations, Root, Clank, Scythe, and Quacks are all great games!",
-      "image": { "src": "/images/board_game.jpg", "alt": "Friends playing chess and Blokus" },
+      "image": { "src": "/images/hobbies/board_game.jpg", "alt": "Friends playing chess and Blokus" },
       "rotation": 1.1,
       "span": "narrow"
     },
     {
       "id": "hobby-cat",
       "blurb": "Kaiser, my senior cat, hope you live forever bud ♥️.",
-      "image": { "src": "/images/cat.jpg", "alt": "A tabby cat resting on a bed" },
+      "image": { "src": "/images/hobbies/cat.jpg", "alt": "A tabby cat resting on a bed" },
       "rotation": -0.9,
       "span": "narrow"
     }

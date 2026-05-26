@@ -7,7 +7,7 @@
       "title": "Territory Conquest",
       "blurb": "A rehash of a classic Roblox game with my own twists.",
       "image": {
-        "src": "/images/territory_conquest_title.png",
+        "src": "/images/games/territory_conquest_title.png",
         "alt": "Territory Conquest"
       },
       "badges": ["Godot"],
@@ -16,7 +16,7 @@
           "type": "split",
           "mediaPosition": "start",
           "media": {
-            "src": "/images/territory_conquest.gif",
+            "src": "/images/games/territory_conquest.gif",
             "alt": "Territory Conquest gameplay animation",
             "caption": "Territory layout and hover selection in play."
           },
@@ -47,7 +47,7 @@
       "title": "Tetris Romantik",
       "blurb": "Tetris-style iteration of Dorfromantik.",
       "image": {
-        "src": "/images/tetris_romantik_title.png",
+        "src": "/images/games/tetris_romantik_title.png",
         "alt": "Tetris Romantik"
       },
       "badges": ["Godot", "Pixel Art"],
@@ -56,7 +56,7 @@
           "type": "split",
           "mediaPosition": "start",
           "media": {
-            "src": "/images/tetris_romantik.gif",
+            "src": "/images/games/tetris_romantik.gif",
             "alt": "Tetris Romantik gameplay animation",
             "caption": "Score, board state, and the card hand during a run."
           },
@@ -87,7 +87,7 @@
       "title": "Scrapling",
       "blurb": "Bio-punk platforming game about a robot finding its feet in a decaying world.",
       "image": {
-        "src": "/images/scrapling_title.png",
+        "src": "/images/games/scrapling_title.png",
         "alt": "scrapling"
       },
       "badges": ["Godot", "Pixel Animations"],
@@ -96,7 +96,7 @@
           "type": "split",
           "mediaPosition": "start",
           "media": {
-            "src": "/images/scrapling_gameplay.gif",
+            "src": "/images/games/scrapling_gameplay.gif",
             "alt": "scrapling gameplay",
             "caption": "Dialogue and the main swinging mechanic."
           },
@@ -127,7 +127,7 @@
       "title": "Sosū",
       "blurb": "Tend to a Bonsai tree while solving simple math problems.",
       "image": {
-        "src": "/images/sosu_title.png",
+        "src": "/images/games/sosu_title.png",
         "alt": "Sosu title screen"
       },
       "badges": ["Godot"],
@@ -136,7 +136,7 @@
           "type": "split",
           "mediaPosition": "start",
           "media": {
-            "src": "/images/sosu_gameplay.gif",
+            "src": "/images/games/sosu_gameplay.gif",
             "alt": "Sosu gameplay",
             "caption": "Tree growing mechanic, with randomized branch generation."
           },
@@ -158,7 +158,7 @@
       "title": "Underwashed",
       "blurb": "Souls-like platforming and fighting game about cleaning up the world.",
       "image": {
-        "src": "/images/underwashed_title.png",
+        "src": "/images/games/underwashed_title.png",
         "alt": "Underwashed title screen"
       },
       "badges": ["Unity", "C#"],
@@ -167,7 +167,7 @@
           "type": "split",
           "mediaPosition": "start",
           "media": {
-            "src": "/images/underwashed_gameplay.gif",
+            "src": "/images/games/underwashed_gameplay.gif",
             "alt": "Underwashed gameplay",
             "caption": "Level navigation, and boss fight against Plato."
           },
